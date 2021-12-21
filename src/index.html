@@ -6,25 +6,26 @@
         <title>Dashboard</title>
         <link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="css/button.css">
-
+        <link rel="stylesheet" href="css/animate.css"/>
     </head>
 
     <body>
         <script src="main.js"></script>
+        <script src="js/jquery.js"></script>
         
         <div class="main">
             <div class="login_page">
-                <div class="login_box">
+                <div class="login_box animate__animated animate__backInDown">
                     <img src="assets/CCC_logo.png" alt="">
                     <div class="forms">
-                        Log in
+                        LOG IN
                         <div class="email">
-                            <input type="text" placeholder="Enter Username" name="uname">
+                            <input type="text" placeholder="Enter Username" id="uname">
                         </div>
                         <div class="pass">
-                            <input type="password" placeholder="Enter Password" name="psw">
+                            <input type="password" placeholder="Enter Password" id="psw">
                         </div>
-                        <button class="glow-on-hover" type="button">Login</button>
+                        <button class="glow-on-hover" type="button" onclick="login()">Login</button>
                     </div>
                 </div>
             </div>
