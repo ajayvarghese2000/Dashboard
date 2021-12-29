@@ -14,10 +14,11 @@
         <script src="js/jquery.js"></script>
         
         <div class="main">
+            
             <div class="login_page">
                 <div class="login_box animate__animated animate__backInDown">
                     <img src="assets/CCC_logo.png" alt="">
-                    <div class="forms">
+                    <div class="forms" >
                         LOG IN
                         <div class="email">
                             <input type="text" placeholder="Enter Username" id="uname">
@@ -26,6 +27,44 @@
                             <input type="password" placeholder="Enter Password" id="psw">
                         </div>
                         <button class="glow-on-hover" type="button" onclick="login()">Login</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard">
+                <div class="topbar">
+                    <div class="topbarleft">
+                        <img src="assets/CCC_logo.png" width="4%">
+                        <p class="text"> DASHBOARD</p>
+                    </div>
+                    <div class="topbarcentre">
+                        <p class="text"> Disconnected From Server</p>
+                    </div>
+                    <div class="topbarright">
+                        <p class="text"> DATE AND TIME</p>
+                    </div>
+                    <div class="menu">
+                        <p class="text">Main</p>
+                        <p class="text">AI Camera</p>
+                        <p class="text">Thermal Camera</p>
+                        <p class="text">Radiation History</p>
+                        <p class="text">Pollution History</p>
+                        <p class="text">Gas History</p>
+                        <p class="text">Maps</p>
+                    </div>
+                </div>
+                <div class="home">
+                    <div class="sidebar">
+                        <!-- For testing only will be created dynamically -->
+                        <div class="tooltip">
+                            <img src="assets/drone.png">
+                            <span class="tooltiptext">Drone 1</span>
+                        </div>
+
+                        <div class="tooltip">
+                            <img src="assets/drone.png">
+                            <span class="tooltiptext">Drone 2</span>
+                        </div>
                     </div>
                 </div>
             </div>
