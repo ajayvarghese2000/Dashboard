@@ -1,6 +1,6 @@
 var URI = "http://ajayvarghese.me"
 var firstcheck = false
-
+var sock
 
 // This function checks the login credentials
 // It takes  in no input
@@ -115,10 +115,52 @@ async function getDrones() {
     return
 }
 
-async function loaddrone() {
-    // console.log('Taking a break...');
-    // await new Promise(r => setTimeout(r, 2000));
-    // console.log('Two seconds later, showing sleep in a loop...');
+async function loaddrone(drone) {
+
+    try {
+        sock.disconnect()
+        console.log("old disconnected")
+    } catch (error) {
+        console.log("not connected")
+    }
+
+    sock = new io(URI, {
+        path: "/ws/socket.io/"
+    });
+
+    sock.on('connect',function() {
+        console.log('Client has connected to the server!');
+    });
+
+    sock.on(String(drone.id),function(data) {
+        
+        var id = data["dname"]
+        var temp = data["temp"]
+        var pressure = data["pressure"]
+        var humidity= data["humidity"]
+        var lux= data["lux"]
+        var geiger= data["geiger"]
+        var gas= data["gas"]
+        var air= data["air"]
+        var gps= data["gps"]
+        var cam= data["cam"]
+        var tcam= data["tcam"]
+        
+        // var c = document.getElementById("myCanvas");
+        // var ctx = c.getContext("2d");
+        // var img = new Image()
+        
+        // img.onload = function() {
+        //   ctx.drawImage(img, 0, 0);
+        // };
+        
+      
+        // img.src = 'data:image/png;base64,' + data["cam"]
+      
+      
+        console.log(gps);
+    });
+      
 
     // load animations
     content = document.querySelector('.contentbox')
