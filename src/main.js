@@ -18,21 +18,21 @@ function login() {
 
     login_page.classList.add("animate__animated", "animate__bounceOutUp")
 
-    login_page.addEventListener('animationend', () => {
-        home = document.querySelector('.home')
-        home.style.visibility = "visible"
-        home.classList.add("animate__animated", "animate__slideInLeft"); 
+    home = document.querySelector('.home')
+    home.style.visibility = "visible"
+    home.classList.add("animate__animated", "animate__slideInLeft"); 
 
-    });
-    
-    
 
     // $(".login_page").removeClass("animate__bounceOutUp");$(".login_page").addClass("animate__bounceInRight") <Log out animation
     // ^ Ajay will fix this later
     
 }
 
-function loaddrone() {
+async function loaddrone() {
+    // console.log('Taking a break...');
+    // await new Promise(r => setTimeout(r, 2000));
+    // console.log('Two seconds later, showing sleep in a loop...');
+
     // load animations
     content = document.querySelector('.contentbox')
     
@@ -46,3 +46,15 @@ function loaddrone() {
 
 
 }
+
+
+function camsize() {
+
+    $(".cam").css("width", $(".cam").height());
+}
+
+window.addEventListener('resize', camsize);
+
+$(document).ready(function() {
+    $(".cam").css("width", $(".cam").height());
+});
