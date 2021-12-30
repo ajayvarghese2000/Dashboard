@@ -1,8 +1,8 @@
 // This function checks the login credentials
-// It takes no input in
+// It takes  in no input
 // Will display an error is the credentials are wrong
 function login() {
-    
+
     // Get the username input
     var uname = $("#uname").val()
 
@@ -10,22 +10,36 @@ function login() {
     var pword = $("#psw").val()
 
     // Hash both.
+    var hashed = hash(uname+pword)
 
     // Check against credentials
+    if (hashed != -159711510) {
+        
+        // Displays error message
+        alertify.error('Incorrect Details Try again');
+        return
+    }
 
-    // Animating out the login screen
+    // If the credentials are correct - displays a success message
+    alertify.success('Logged In')
+
+    // Getting the login page element
     login_page = document.querySelector('.login_page')
 
+    // Animating the page out
     login_page.classList.add("animate__animated", "animate__bounceOutUp")
 
+    // Getting list of available drones from server
+
+    // Getting the home page element
     home = document.querySelector('.home')
+
+    // Making the home page visible
     home.style.visibility = "visible"
-    home.classList.add("animate__animated", "animate__slideInLeft"); 
 
+    // Animating in the page
+    home.classList.add("animate__animated", "animate__slideInLeft");
 
-    // $(".login_page").removeClass("animate__bounceOutUp");$(".login_page").addClass("animate__bounceInRight") <Log out animation
-    // ^ Ajay will fix this later
-    
 }
 
 async function loaddrone() {
@@ -35,13 +49,13 @@ async function loaddrone() {
 
     // load animations
     content = document.querySelector('.contentbox')
-    
+
     content.style.visibility = "visible"
 
-    content.classList.add("animate__animated","animate__slideInRight")
+    content.classList.add("animate__animated", "animate__slideInRight")
 
     content.addEventListener('animationend', () => {
-        content.classList.remove("animate__animated","animate__slideInRight")
+        content.classList.remove("animate__animated", "animate__slideInRight")
     });
 
 
@@ -55,6 +69,13 @@ function camsize() {
 
 window.addEventListener('resize', camsize);
 
-$(document).ready(function() {
+$(document).ready(function () {
     $(".cam").css("width", $(".cam").height());
 });
+
+function hash(s) {
+    return s.split("").reduce(function (a, b) {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a
+    }, 0);
+}
