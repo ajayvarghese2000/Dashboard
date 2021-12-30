@@ -115,60 +115,86 @@ async function getDrones() {
     return
 }
 
+// This function is run when a drone from the side bar is clicked
+// It sets-up the websocket and the websocket listeners for the drone
+// in question. Once connected the data will be streamed to the user
+// Takes in a drone DOM element
 async function loaddrone(drone) {
 
+    // Clean Up main
+    clean()
+
+    // Attempts to close any old connections
     try {
         sock.disconnect()
-        console.log("old disconnected")
     } catch (error) {
         console.log("not connected")
     }
 
-    sock = new io(URI, {
-        path: "/ws/socket.io/"
+    // Attempts to open a new websocket connection
+    try {
+
+        // Creating the New SocketIO variable
+        sock = new io(URI, {
+            path: "/ws/socket.io/"
+        });
+    } catch (error) {
+
+        // if there is a connection problem alert the user
+        alertify.error("Server seems to be down")
+    }
+
+    // The data listener, this function is always run with data from the
+    // selected drone is received
+    sock.on(String(drone.id), function (data) {
+
+        // Variables to store data from the data packet
+        var id, temp, pressure, humidity, lux, geiger, gas, air, gps, cam
+
+        try {
+
+            // Attempts to get the data from the data packet
+            id = data["dname"]
+            temp = data["temp"]
+            pressure = data["pressure"]
+            humidity = data["humidity"]
+            lux = data["lux"]
+            geiger = data["geiger"]
+            gas = data["gas"]
+            air = data["air"]
+            gps = data["gps"]
+            cam = data["cam"]
+            tcam = data["tcam"]
+
+        } catch (error) {
+
+            // If the data is missing or improper throw an error
+            alertify.error("Data packet seems to be invalid")
+            return
+        }
+
+        // Drawing the AI cam image to the AI Cam Box
+        var aicamfeed = document.getElementById("aicamfeed");
+        drawImageScaled(cam, aicamfeed)
+        
+        // Drawing the Thermal Cam Image to the Thermal Cam Box
+        var tcamfeed = document.getElementById("tcamfeed");
+        drawImageScaled(tcam, tcamfeed)
+
+
     });
 
-    sock.on('connect',function() {
-        console.log('Client has connected to the server!');
-    });
 
-    sock.on(String(drone.id),function(data) {
-        
-        var id = data["dname"]
-        var temp = data["temp"]
-        var pressure = data["pressure"]
-        var humidity= data["humidity"]
-        var lux= data["lux"]
-        var geiger= data["geiger"]
-        var gas= data["gas"]
-        var air= data["air"]
-        var gps= data["gps"]
-        var cam= data["cam"]
-        var tcam= data["tcam"]
-        
-        // var c = document.getElementById("myCanvas");
-        // var ctx = c.getContext("2d");
-        // var img = new Image()
-        
-        // img.onload = function() {
-        //   ctx.drawImage(img, 0, 0);
-        // };
-        
-      
-        // img.src = 'data:image/png;base64,' + data["cam"]
-      
-      
-        console.log(gps);
-    });
-      
-
-    // load animations
+    // Gets the main contentbox DOM
     content = document.querySelector('.contentbox')
 
+    // Sets it to be visible
     content.style.visibility = "visible"
 
+    // Adds the animation classes
     content.classList.add("animate__animated", "animate__slideInRight")
 
+    // Removes the classes aster the animation is finished
     content.addEventListener('animationend', () => {
         content.classList.remove("animate__animated", "animate__slideInRight")
     });
@@ -176,21 +202,51 @@ async function loaddrone(drone) {
 
 }
 
-
+// Functions to automatically resize elements
 function camsize() {
 
-    $(".cam").css("width", $(".cam").height());
+    $("#tcamdiv").css("width", $(".cam").width());
+    $(".poulltion").css("width", $(".contentbottem").width() - $(".cam").width() - 10)
 }
 
 window.addEventListener('resize', camsize);
 
 $(document).ready(function () {
-    $(".cam").css("width", $(".cam").height());
+    $("#tcamdiv").css("width", $(".cam").width());
+    $(".poulltion").css("width", $(".contentbottem").width() - $(".cam").width() - 10)
 });
 
+
+// Hashing function to take the login details
 function hash(s) {
     return s.split("").reduce(function (a, b) {
         a = ((a << 5) - a) + b.charCodeAt(0);
         return a & a
     }, 0);
+}
+
+// Function to draw Base64 PNG's to canvases
+// Takes in a base64 image and a canvas DOM element
+function drawImageScaled(base64, canvas) {
+    var image = new Image()
+    image.src = 'data:image/png;base64,' + base64
+    var ctx = canvas.getContext("2d")
+    image.onload = function () {
+        ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
+    };
+    return
+}
+
+// This function deletes old data from the main page
+function clean() {
+
+    // Deleting the old image off the ai cam
+    aicamfeed = document.getElementById("aicamfeed");
+    ctx = aicamfeed.getContext("2d")
+    ctx.clearRect(0, 0, aicamfeed.width, aicamfeed.height);
+
+    // Deleting the old image off the thermal cam
+    tcamfeed = document.getElementById("tcamfeed");
+    tctx = tcamfeed.getContext("2d")
+    tctx.clearRect(0, 0, tcamfeed.width, tcamfeed.height);
 }
