@@ -198,7 +198,8 @@ body {
     width: 100%;
     position: relative;
     display: flex;
-    top: 10%
+    padding-top: 5%;
+    visibility: hidden;
 }
 
 .sidebar {
@@ -256,4 +257,68 @@ body {
   
 .tooltip:hover .tooltiptext {
     visibility: visible;
+}
+
+.contentbox {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    visibility: hidden;
+}
+
+.contenttop {
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.contenttop div{
+    height: 100%;
+    background-color: #3F3F3F;
+    border-radius: 30px;
+}
+
+.cam {
+    position: relative;
+    width: 20.17%;
+    margin-right: 10px;
+}
+
+.halfcam {
+    position: relative;
+    width: 15%;
+    margin-right: 10px;
+}
+
+.gas {
+    position: relative;
+    width: 43%;
+    margin-right: 10px;
+}
+
+.contentbottem {
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.contentbottem div{
+    height: 100%;
+    background-color: #3F3F3F;
+    border-radius: 30px;
+}
+
+.poulltion {
+    position: relative;
+    width: 79%;
+    margin-right: 10px;
 }
