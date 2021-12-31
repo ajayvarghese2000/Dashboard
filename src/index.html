@@ -14,7 +14,6 @@
         <script src="js/jquery.js"></script>
         <script src="js/alertify.min.js"></script>
         <script src="https://cdn.socket.io/4.4.0/socket.io.js"></script>
-        <script src="js/main.js"></script>
         
         <div class="main">
             
@@ -72,11 +71,32 @@
                             <div class="cam">
                                 <canvas id="aicamfeed"></canvas>
                             </div>
-                            <div class="scam">
-
+                            <div class="scam" id="rads">
+                                <p class="box_name"> Geiger Counter</p>
+                                <div class="gauge">
+                                    <div class="gauge__body">
+                                      <div class="gauge__fill"></div>
+                                      <div class="gauge__cover"></div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="halfcam">
-
+                                <div class="line">
+                                    <img src="/src/assets/sun.png">
+                                    <p class="box_name" id="temp">Temp</p>
+                                </div>
+                                <div class="line">
+                                    <img src="/src/assets/water.png">
+                                    <p class="box_name" id="humidity">Humidity</p>
+                                </div>
+                                <div class="line">
+                                    <img src="/src/assets/pressure.png">
+                                    <p class="box_name" id="pressure">Pressure</p>
+                                </div>
+                                <div class="line">
+                                    <img src="/src/assets/light.png">
+                                    <p class="box_name" id="lux">Lux</p>
+                                </div>
                             </div>
                             <div class="gas">
 
@@ -95,5 +115,7 @@
             </div>
 
         </div>
+
+    <script src="js/main.js"></script>
     </body>
 </html>

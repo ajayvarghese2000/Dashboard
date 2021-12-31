@@ -20,7 +20,7 @@ body {
     width: 100%;
     height: 100%;
     display: block;
-    z-index: 10;    
+    z-index: 10;
 }
 
 .login_box {
@@ -40,7 +40,7 @@ body {
     box-shadow: 5px 5px 15px 5px #212121b6;
 }
 
-.login_box img{
+.login_box img {
     position: relative;
     margin: 40px;
 }
@@ -102,13 +102,13 @@ body {
     opacity: 1;
 }
 
-.dashboard{
+.dashboard {
     width: 100%;
     height: 100%;
     position: fixed;
 }
 
-.topbar{
+.topbar {
     width: 100%;
     height: 4%;
     position: relative;
@@ -127,7 +127,7 @@ body {
     margin-top: 5px;
 }
 
-.text{
+.text {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 25px;
     margin: 0;
@@ -135,7 +135,7 @@ body {
     color: rgb(255, 255, 255);
 }
 
-.topbarleft{
+.topbarleft {
     display: inline;
     position: absolute;
     top: 50%;
@@ -143,27 +143,27 @@ body {
 
 }
 
-.topbarcentre{
+.topbarcentre {
     margin: 0;
     position: relative;
     top: 50%;
     left: 50%;
 }
 
-.topbarcentre p{
+.topbarcentre p {
     margin: 0;
     position: absolute;
     transform: translate(-50%, -50%);
 }
 
-.topbarright{
+.topbarright {
     margin: 0;
     position: relative;
     top: 50%;
     left: 100%;
 }
 
-.topbarright p{
+.topbarright p {
     margin: 0;
     position: absolute;
     transform: translate(-105%, -50%);
@@ -183,22 +183,22 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.menu p{
+.menu p {
     height: 80%;
     margin-left: 10px;
     margin-right: 10px;
     font-size: 20px;
     position: relative;
-    top : 0%;
-    transform : translateY(12%);
+    top: 0%;
+    transform: translateY(12%);
     font-size: 1vw;
 }
 
-.menu p:hover{
+.menu p:hover {
     color: #959595;
 }
 
-.home{
+.home {
     height: 80%;
     width: 100%;
     position: relative;
@@ -225,19 +225,19 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.sidebar img{
+.sidebar img {
     margin-top: 10px;
     width: 45px;
     height: 45px;
     position: relative;
 }
 
-.sidebar img:hover{
+.sidebar img:hover {
     margin-top: 10px;
     width: 45px;
     height: 45px;
     position: relative;
-    filter : invert(50%);
+    filter: invert(50%);
 }
 
 /* CSS for the drone names when hovered */
@@ -245,7 +245,7 @@ body {
     position: relative;
     display: inline-block;
 }
-  
+
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 70px;
@@ -260,7 +260,7 @@ body {
     left: 125%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-  
+
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
@@ -284,37 +284,52 @@ body {
     align-items: center;
 }
 
-.contenttop div{
+.cam {
+    position: relative;
+    margin-right: 10px;
+    width: 45%;
     height: 90%;
     background-color: #3F3F3F;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.cam {
-    position: relative;
-    /* width: 20.17%; */
-    margin-right: 10px;
-    width: 45%;
-}
-
 .scam {
     position: relative;
-    /* width: 20.17%; */
     margin-right: 10px;
     width: 25%;
+    height: 90%;
+    background-color: #3F3F3F;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
 }
 
 .halfcam {
     position: relative;
     width: 20%;
     margin-right: 10px;
+    height: 90%;
+    background-color: #3F3F3F;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .gas {
     position: relative;
     width: 45%;
     margin-right: 10px;
+    height: 90%;
+    background-color: #3F3F3F;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .contentbottem {
@@ -325,21 +340,88 @@ body {
     align-items: center;
 }
 
-.contentbottem div{
+.poulltion {
+    position: relative;
+    margin-right: 10px;
     height: 90%;
     background-color: #3F3F3F;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.poulltion {
-    position: relative;
-    margin-right: 10px;
-}
-
-.cam canvas{
+.cam canvas {
     position: relative;
     width: 100%;
     height: 100%;
     border-radius: 30px;
+}
+
+.gauge {
+    width: 80%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 32px;
+    color: #ffffff;
+}
+
+.gauge__body {
+    width: 100%;
+    height: 0;
+    padding-bottom: 50%;
+    background: #959595;
+    position: relative;
+    border-top-left-radius: 100% 200%;
+    border-top-right-radius: 100% 200%;
+    overflow: hidden;
+}
+
+.gauge__fill {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: inherit;
+    height: 100%;
+    background: #6002EE;
+    transform-origin: center top;
+    transform: rotate(0.25turn);
+    transition: transform 0.2s ease-out;
+}
+
+.gauge__cover {
+    width: 75%;
+    height: 150%;
+    background: #3F3F3F;
+    border-radius: 50%;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    /* Text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 25%;
+    box-sizing: border-box;
+}
+
+.box_name{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    margin: 0;
+}
+
+.line{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-top: 7%;
+    margin-bottom: 7%;
+    position: relative;
+    width: 90%;
+}
+
+.line img{
+    padding-right: 10%;
+    width: 20%;
 }

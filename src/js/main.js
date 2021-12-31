@@ -176,10 +176,16 @@ async function loaddrone(drone) {
         // Drawing the AI cam image to the AI Cam Box
         var aicamfeed = document.getElementById("aicamfeed");
         drawImageScaled(cam, aicamfeed)
-        
+
         // Drawing the Thermal Cam Image to the Thermal Cam Box
         var tcamfeed = document.getElementById("tcamfeed");
         drawImageScaled(tcam, tcamfeed)
+
+        // Set radiation level
+        setGaugeValue(geiger)
+
+        // setting the info boxes
+        setInfobox(false, temp, humidity, pressure,lux)
 
 
     });
@@ -249,4 +255,40 @@ function clean() {
     tcamfeed = document.getElementById("tcamfeed");
     tctx = tcamfeed.getContext("2d")
     tctx.clearRect(0, 0, tcamfeed.width, tcamfeed.height);
+
+    // Resetting gauge
+    setGaugeValue(0)
+
+    // resetting info box
+    setInfobox(true, 0, 0, 0,0)
+}
+
+function setGaugeValue(value) {
+
+    const min = 0;
+    const max = 2500;
+    let rvalue = value/max;
+
+    document.querySelector(".gauge__fill").style.transform = 'rotate(' + rvalue / 2 + 'turn)';
+    document.querySelector(".gauge__cover").textContent = value + " CPM";
+
+}
+
+function setInfobox(reset, temp, humid, press,lux) {
+    if (reset ==true)
+    {
+        $("#temp").html('Temp')
+        $("#humidity").html('Humidity')
+        $("#pressure").html('Pressure')
+        $("#lux").html('Lux')
+        return
+    }
+    else
+    {
+        $("#temp").html(String(temp) + " °C")
+        $("#humidity").html(String(humid) + "%")
+        $("#pressure").html(String(press) + " hPa")
+        $("#lux").html(String(lux) + " Lux")
+        return
+    }
 }
