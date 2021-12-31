@@ -1,4 +1,4 @@
-var URI = "http://ajayvarghese.me"
+var URI = window.location.protocol + "//" + window.location.host
 var firstcheck = false
 var sock
 
