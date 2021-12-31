@@ -1,5 +1,6 @@
 var URI = window.location.protocol + "//" + window.location.host
 var firstcheck = false
+var servererror = false
 var sock
 
 // This function checks the login credentials
@@ -46,6 +47,15 @@ async function login() {
     // Animating in the page
     home.classList.add("animate__animated", "animate__slideInLeft");
 
+    // Getting the menu page element
+    menu = document.querySelector('.menu')
+
+    // Making the menu page visible
+    menu.style.visibility = "visible"
+
+    // Animating in the page
+    menu.classList.add("animate__animated", "animate__fadeIn");
+
 }
 
 // This function will check with the server what drones are connected
@@ -79,6 +89,20 @@ async function getDrones() {
         // Exit if the server is not connectable
         return
 
+    }
+
+    if (r.status != 200 && servererror == false) {
+        // if there is a connection problem alert the user
+        alertify.error("Server seems to be down")
+
+        // Clearing the sidebar of old drones
+        $(".sidebar").empty()
+
+        // Stopping spam of error messages
+        servererror = true
+
+        // Exit if the server is not connectable
+        return
     }
 
     // Pull the JSON data from the request
