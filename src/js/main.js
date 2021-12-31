@@ -190,8 +190,14 @@ async function loaddrone(drone) {
         // Set radiation level
         setGaugeValue(geiger)
 
-        // setting the info boxes
-        setInfobox(false, temp, humidity, pressure,lux)
+        // Setting the info boxes
+        setInfobox(false, temp, humidity, pressure, lux)
+
+        // Adding to the gas graph
+        plotgas(gas)
+
+        // Adding to the air poll graph
+        plotair(air)
 
 
     });
@@ -226,8 +232,14 @@ window.addEventListener('resize', camsize);
 $(document).ready(function () {
     $("#tcamdiv").css("width", $(".cam").width());
     $(".poulltion").css("width", $(".contentbottem").width() - $(".cam").width() - 10)
+
     datetime()
-    setInterval(datetime,500);
+    setInterval(datetime, 500);
+
+    newplotgas()
+
+    newplotair()
+
 });
 
 
@@ -268,14 +280,22 @@ function clean() {
     setGaugeValue(0)
 
     // resetting info box
-    setInfobox(true, 0, 0, 0,0)
+    setInfobox(true, 0, 0, 0, 0)
+
+    // Deleting old graph
+    Plotly.purge("gaschart")
+    newplotgas()
+
+    // Deleting old graph
+    Plotly.purge("airchart")
+    newplotair()
 }
 
 function setGaugeValue(value) {
 
     const min = 0;
     const max = 2500;
-    let rvalue = value/max;
+    let rvalue = value / max;
 
     if (value > max || value < min) {
         return
@@ -286,17 +306,14 @@ function setGaugeValue(value) {
 
 }
 
-function setInfobox(reset, temp, humid, press,lux) {
-    if (reset ==true)
-    {
+function setInfobox(reset, temp, humid, press, lux) {
+    if (reset == true) {
         $("#temp").html('Temp')
         $("#humidity").html('Humidity')
         $("#pressure").html('Pressure')
         $("#lux").html('Lux')
         return
-    }
-    else
-    {
+    } else {
         $("#temp").html(String(temp) + " °C")
         $("#humidity").html(String(humid) + "%")
         $("#pressure").html(String(press) + " hPa")
@@ -308,4 +325,126 @@ function setInfobox(reset, temp, humid, press,lux) {
 function datetime() {
     var dt = new Date().toLocaleString();
     $("#dnt").html(String(dt))
+}
+
+function plotgas(gas) {
+    var time = new Date();
+
+    var data = { 
+        x : [[time],[time],[time]],
+        y : [[gas["co"]],[gas["no2"]],[gas["nh3"]]]
+    }
+    Plotly.extendTraces('gaschart', data,[0,1,2])
+}
+
+function newplotgas() {
+    var time = new Date();
+
+    var layout = {
+        title: {
+            text : 'Detected Gas',
+            font : {
+                color : "#FFFFFF"
+            }
+        },
+        xaxis: {
+            title: 'Time',
+            color : "#FFFFFF",
+            gridcolor : "#FFFFFF"
+        },
+        yaxis: {
+            title: 'PPM',
+            color : "#FFFFFF",
+            gridcolor : "#FFFFFF"
+        },
+        plot_bgcolor: "#3F3F3F",
+        paper_bgcolor: "#3F3F3F",
+        legend : {
+            bgcolor : "#3F3F3F",
+            bordercolor : "#3F3F3F",
+            font : {
+                color : "#FFFFFF"
+            }
+        }
+    };
+
+    var co = {
+        x: [time],
+        y: [],
+        name: 'Carbon Monoxide'
+    }
+    var no2 = {
+        x: [time],
+        y: [],
+        name: 'Nitorgen Dioxide'
+    }
+    var nh3 = {
+        x: [time],
+        y: [],
+        name: 'Ammonia'
+    }
+    var traces = [co,no2,nh3]
+
+    Plotly.plot('gaschart', traces, layout)
+}
+
+function plotair(air) {
+    var time = new Date();
+
+    var data = { 
+        x : [[time],[time],[time]],
+        y : [[air["pm1"]],[air["pm2_5"]],[air["pm10"]]]
+    }
+    Plotly.extendTraces('airchart', data,[0,1,2])
+}
+
+function newplotair() {
+    var time = new Date();
+
+    var layout = {
+        title: {
+            text : 'Particulates',
+            font : {
+                color : "#FFFFFF"
+            }
+        },
+        xaxis: {
+            title: 'Time',
+            color : "#FFFFFF",
+            gridcolor : "#FFFFFF"
+        },
+        yaxis: {
+            title: 'ug/m3',
+            color : "#FFFFFF",
+            gridcolor : "#FFFFFF"
+        },
+        plot_bgcolor: "#3F3F3F",
+        paper_bgcolor: "#3F3F3F",
+        legend : {
+            bgcolor : "#3F3F3F",
+            bordercolor : "#3F3F3F",
+            font : {
+                color : "#FFFFFF"
+            }
+        }
+    };
+
+    var PM1 = {
+        x: [time],
+        y: [],
+        name: 'PM1'
+    }
+    var PM25 = {
+        x: [time],
+        y: [],
+        name: 'PM2.5'
+    }
+    var PM10 = {
+        x: [time],
+        y: [],
+        name: 'PM10'
+    }
+    var traces = [PM1,PM25,PM10]
+
+    Plotly.plot('airchart', traces, layout)
 }
