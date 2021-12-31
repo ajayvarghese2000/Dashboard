@@ -127,6 +127,9 @@ async function loaddrone(drone) {
     // Attempts to close any old connections
     try {
         sock.disconnect()
+
+        // Disconnection message
+        $("#infomessage").html("Disconnected To Drone")
     } catch (error) {
         console.log("not connected")
     }
@@ -138,6 +141,9 @@ async function loaddrone(drone) {
         sock = new io(URI, {
             path: "/ws/socket.io/"
         });
+
+        // Updating the Top message
+        $("#infomessage").html("Connected To Drone")
     } catch (error) {
 
         // if there is a connection problem alert the user
@@ -220,6 +226,8 @@ window.addEventListener('resize', camsize);
 $(document).ready(function () {
     $("#tcamdiv").css("width", $(".cam").width());
     $(".poulltion").css("width", $(".contentbottem").width() - $(".cam").width() - 10)
+    datetime()
+    setInterval(datetime,500);
 });
 
 
@@ -269,6 +277,10 @@ function setGaugeValue(value) {
     const max = 2500;
     let rvalue = value/max;
 
+    if (value > max || value < min) {
+        return
+    }
+
     document.querySelector(".gauge__fill").style.transform = 'rotate(' + rvalue / 2 + 'turn)';
     document.querySelector(".gauge__cover").textContent = value + " CPM";
 
@@ -291,4 +303,9 @@ function setInfobox(reset, temp, humid, press,lux) {
         $("#lux").html(String(lux) + " Lux")
         return
     }
+}
+
+function datetime() {
+    var dt = new Date().toLocaleString();
+    $("#dnt").html(String(dt))
 }
