@@ -38,7 +38,7 @@ However, should you wish to host the Dashboard separately from the Cloud-server 
 **Step 1 :** is to clone the repository to the device you plan to host it from. If you have git installed you can do so by running the following.
 
 ```
-git clone https://github.com/ajayvarghese2000/Dashboard.get
+git clone https://github.com/ajayvarghese2000/Dashboard.git
 ```
 
 **Step 2 :** is to edit the `main.js` file which is located in the `src/js` folder. You must change the `URI` variable on line 1 to point to the location of the cloud server.
