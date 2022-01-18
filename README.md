@@ -6,10 +6,10 @@
 
 <p align="center">
 	<a href="https://github.com/lboroWMEME-TeamProject/CCC-ProjectDocs"><img src="https://i.imgur.com/rBaZyub.png" alt="drawing" height = 33/></a> 
-	<a href="https://github.com/ajayvarghese2000/Dashboard"><img src="https://i.imgur.com/fz7rgd9.png" alt="drawing" height = 33/></a> 
-	<a href="https://github.com/ajayvarghese2000/Cloud-Server"><img src="https://i.imgur.com/bsimXcV.png" alt="drawing" height = 33/></a> 
+	<a href="https://github.com/lboroWMEME-TeamProject/Dashboard"><img src="https://i.imgur.com/fz7rgd9.png" alt="drawing" height = 33/></a> 
+	<a href="https://github.com/lboroWMEME-TeamProject/Cloud-Server"><img src="https://i.imgur.com/bsimXcV.png" alt="drawing" height = 33/></a> 
 	<a><img src="https://i.imgur.com/yKFokIL.png" alt="drawing" height = 33/></a> 
-	<a href="https://github.com/ajayvarghese2000/Simulated-Drone"><img src="https://i.imgur.com/WMOZbrf.png" alt="drawing" height = 33/></a>
+	<a href="https://github.com/lboroWMEME-TeamProject/Simulated-Drone"><img src="https://i.imgur.com/WMOZbrf.png" alt="drawing" height = 33/></a>
 </p>
 
 ------------
@@ -31,14 +31,14 @@ This will run in a browser and will make API and SocketIO calls to the server fo
 
 ## Installation
 
-This dashboard comes with the [cloud-server](https://github.com/ajayvarghese2000/Cloud-Server) project files. By installing the Cloud server you will automatically install this dashboard along with it.
+This dashboard comes with the [cloud-server](https://github.com/lboroWMEME-TeamProject/Cloud-Server) project files. By installing the Cloud server you will automatically install this dashboard along with it.
 
 However, should you wish to host the Dashboard separately from the Cloud-server you can do.
 
 **Step 1 :** is to clone the repository to the device you plan to host it from. If you have git installed you can do so by running the following.
 
 ```
-git clone https://github.com/ajayvarghese2000/Dashboard.git
+git clone https://github.com/lboroWMEME-TeamProject/Dashboard.git
 ```
 
 **Step 2 :** is to edit the `main.js` file which is located in the `src/js` folder. You must change the `URI` variable on line 1 to point to the location of the cloud server.
@@ -65,7 +65,7 @@ Some good recommendations:
 ## Documentation
 Users must first login and authenticate themselves before being allowed access to the data
 
-![Login](https://github.com/ajayvarghese2000/Dashboard/blob/main/docs/img/Dashbaord%20Login.gif?raw=true)
+![Login](https://github.com/lboroWMEME-TeamProject/Dashboard/blob/main/docs/img/Dashbaord%20Login.gif?raw=true)
 
 After successfully authenticating themselves the dashboard attempts to make a connection to the server. 
 
