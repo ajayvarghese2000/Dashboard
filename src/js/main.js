@@ -1,61 +1,11 @@
+var TESTING = true;
 var URI = window.location.protocol + "//" + window.location.host
 var firstcheck = false
 var servererror = false
 var sock
 
-// This function checks the login credentials
-// It takes  in no input
-// Will display an error is the credentials are wrong
-async function login() {
-
-    // Get the username input
-    var uname = $("#uname").val()
-
-    // Get the password input
-    var pword = $("#psw").val()
-
-    // Hash both.
-    var hashed = hash(uname + pword)
-
-    // Check against credentials
-    if (hashed != -159711510) {
-
-        // Displays error message
-        alertify.error('Incorrect Details Try again');
-        return
-    }
-
-    // If the credentials are correct - displays a success message
-    alertify.success('Logged In')
-
-    // Getting the login page element
-    login_page = document.querySelector('.login_page')
-
-    // Animating the page out
-    login_page.classList.add("animate__animated", "animate__bounceOutUp")
-
-    // Getting list of available drones from server, set to repeat every 5 seconds
-    await getDrones()
-    await setInterval(getDrones, 5000);
-
-    // Getting the home page element
-    home = document.querySelector('.home')
-
-    // Making the home page visible
-    home.style.visibility = "visible"
-
-    // Animating in the page
-    home.classList.add("animate__animated", "animate__slideInLeft");
-
-    // Getting the menu page element
-    menu = document.querySelector('.menu')
-
-    // Making the menu page visible
-    menu.style.visibility = "visible"
-
-    // Animating in the page
-    menu.classList.add("animate__animated", "animate__fadeIn");
-
+if (TESTING) {
+    URI = "http://ajayvarghese.me"
 }
 
 // This function will check with the server what drones are connected
@@ -246,26 +196,9 @@ async function loaddrone(drone) {
 
 // Functions to automatically resize elements
 function camsize() {
-
     $("#tcamdiv").css("width", $(".cam").width());
     $(".poulltion").css("width", $(".contentbottem").width() - $(".cam").width() - 10)
 }
-
-window.addEventListener('resize', camsize);
-
-$(document).ready(function () {
-    $("#tcamdiv").css("width", $(".cam").width());
-    $(".poulltion").css("width", $(".contentbottem").width() - $(".cam").width() - 10)
-
-    datetime()
-    setInterval(datetime, 500);
-
-    newplotgas()
-
-    newplotair()
-
-});
-
 
 // Hashing function to take the login details
 function hash(s) {
@@ -315,52 +248,88 @@ function clean() {
     newplotair()
 }
 
+/**
+ * @breif Allows updating the value of the geiger counter gauge
+ * @param value - the CPM sent by the drone
+ * @returns nothing
+ */
 function setGaugeValue(value) {
 
+    // The Min and Max Value
     const min = 0;
     const max = 2500;
-    let rvalue = value / max;
 
+    // if the value is too big/too small it is rejected
     if (value > max || value < min) {
         return
     }
 
+    // The % of the max value used to rotate the bar
+    let rvalue = value / max;
+
+    // Rotate the gauge bar by the % above
     document.querySelector(".gauge__fill").style.transform = 'rotate(' + rvalue / 2 + 'turn)';
+
+    // Update the value of the CPM
     document.querySelector(".gauge__cover").textContent = value + " CPM";
 
 }
-
+/**
+ * 
+ * @brief Sets the values for the small info mox inside the main page
+ * @param {*} reset - tells the program to reset the data or not
+ * @param {*} temp  - the temperature value from the drone
+ * @param {*} humid - the humidity level from the drone
+ * @param {*} press - the pressure level from the drone
+ * @param {*} lux  - the light detected by the drone
+ * @returns 
+ */
 function setInfobox(reset, temp, humid, press, lux) {
-    if (reset == true) {
-        $("#temp").html('Temp')
-        $("#humidity").html('Humidity')
-        $("#pressure").html('Pressure')
-        $("#lux").html('Lux')
-        return
-    } else {
+    
+    // if we're not resetting then update the values from the DOM
+    if (reset != true)
+    {
         $("#temp").html(String(temp) + " °C")
         $("#humidity").html(String(humid) + "%")
         $("#pressure").html(String(press) + " hPa")
         $("#lux").html(String(lux) + " Lux")
         return
     }
+    
+    // Otherwise reset the values
+    $("#temp").html('Temp')
+    $("#humidity").html('Humidity')
+    $("#pressure").html('Pressure')
+    $("#lux").html('Lux')
+    return
+
 }
 
+/**
+ * @brief Sets the date and time in the top bar
+ */
 function datetime() {
     var dt = new Date().toLocaleString();
     $("#dnt").html(String(dt))
 }
 
+/**
+ * @brief plots the gas data
+ * @param {*} gas - an array with all the gas data
+ */
 function plotgas(gas) {
     var time = new Date();
 
     var data = { 
         x : [[time],[time],[time]],
-        y : [[gas["co"]],[gas["no2"]],[gas["nh3"]]]
+        y : [[gas["co"]], [gas["no2"]], [gas["nh3"]]]
     }
     Plotly.extendTraces('gaschart', data,[0,1,2])
 }
 
+/**
+ * @brief Creates the gas graphs
+ */
 function newplotgas() {
     var time = new Date();
 
@@ -412,6 +381,10 @@ function newplotgas() {
     Plotly.plot('gaschart', traces, layout)
 }
 
+/**
+ * @brief plots new air quality data
+ * @param {*} air - array of particulate data
+ */
 function plotair(air) {
     var time = new Date();
 
@@ -422,6 +395,9 @@ function plotair(air) {
     Plotly.extendTraces('airchart', data,[0,1,2])
 }
 
+/**
+ * @brief Creates the air graphs
+ */
 function newplotair() {
     var time = new Date();
 
@@ -472,3 +448,18 @@ function newplotair() {
 
     Plotly.plot('airchart', traces, layout)
 }
+
+window.addEventListener('resize', camsize);
+
+$(document).ready(function () {
+    $("#tcamdiv").css("width", $(".cam").width());
+    $(".poulltion").css("width", $(".contentbottem").width() - $(".cam").width() - 10)
+
+    datetime()
+    setInterval(datetime, 500);
+
+    newplotgas()
+
+    newplotair()
+
+});
