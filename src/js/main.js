@@ -3,6 +3,8 @@ var URI = window.location.protocol + "//" + window.location.host
 var firstcheck = false
 var servererror = false
 var sock
+var DRONES_AVAILABLE = false;
+var CONNECTED = false;
 
 if (TESTING) {
     URI = "http://ajayvarghese.me"
@@ -21,14 +23,17 @@ async function getDrones() {
     let r
 
     // Attempting to connect to the server
-    try {
+    try
+    {
 
         // Connecting to the server endpoint
         r = await fetch(url)
 
         // Clearing the sidebar of old drones
         $(".sidebar").empty()
-    } catch (error) {
+    } 
+    catch (error) 
+    {
 
         // if there is a connection problem alert the user
         alertify.error("Server seems to be down")
@@ -71,6 +76,9 @@ async function getDrones() {
             firstcheck = true
         }
 
+        // Setting the no drones available variable
+        DRONES_AVAILABLE = false;
+        
         // Returning if there are no drones
         return
     }
@@ -85,6 +93,9 @@ async function getDrones() {
         $("#" + id).append(tooltip)
     }
 
+    // Setting the no drones available variable
+    DRONES_AVAILABLE = true;
+
     // Once all drones have been added return back
     return
 }
@@ -97,19 +108,27 @@ async function loaddrone(drone) {
 
     // Clean Up main
     clean()
+    hideall();
 
     // Attempts to close any old connections
-    try {
+    try 
+    {
         sock.disconnect()
 
         // Disconnection message
         $("#infomessage").html("Disconnected To Drone")
-    } catch (error) {
+    }
+    catch (error) 
+    {
         console.log("not connected")
+        
+        // Sets the Connected status
+        CONNECTED = false;
     }
 
     // Attempts to open a new websocket connection
-    try {
+    try 
+    {
 
         // Creating the New SocketIO variable
         sock = new io(URI, {
@@ -117,11 +136,24 @@ async function loaddrone(drone) {
         });
 
         // Updating the Top message
-        $("#infomessage").html("Connected To Drone")
-    } catch (error) {
+        $("#infomessage").html("Connected To Drone");
+
+        // debugging
+        console.log("Connected");
+
+        // Sets the Connected status
+        CONNECTED = true;
+    }
+    catch (error) 
+    {
 
         // if there is a connection problem alert the user
         alertify.error("Server seems to be down")
+
+        // Sets the Connected status
+        CONNECTED = false;
+
+        return;
     }
 
     // The data listener, this function is always run with data from the
@@ -131,7 +163,7 @@ async function loaddrone(drone) {
         // Variables to store data from the data packet
         var id, temp, pressure, humidity, lux, geiger, gas, air, gps, cam
 
-        try {
+        try{
 
             // Attempts to get the data from the data packet
             id = data["dname"]
@@ -146,20 +178,32 @@ async function loaddrone(drone) {
             cam = data["cam"]
             tcam = data["tcam"]
 
-        } catch (error) {
+        } 
+        catch (error) 
+        {
 
             // If the data is missing or improper throw an error
             alertify.error("Data packet seems to be invalid")
+            
+            // Sets the Connected status
+            CONNECTED = false;
             return
         }
 
+        // Sets the Connected status
+        CONNECTED = true;
+
         // Drawing the AI cam image to the AI Cam Box
         var aicamfeed = document.getElementById("aicamfeed");
+        var bigaicamfeed = document.getElementById("bigaicamfeed");
         drawImageScaled(cam, aicamfeed)
+        drawImageScaled(cam, bigaicamfeed)
 
         // Drawing the Thermal Cam Image to the Thermal Cam Box
         var tcamfeed = document.getElementById("tcamfeed");
+        var bigtcamfeed = document.getElementById("bigtcamfeed");
         drawImageScaled(tcam, tcamfeed)
+        drawImageScaled(tcam, bigtcamfeed)
 
         // Set radiation level
         setGaugeValue(geiger)
@@ -178,7 +222,7 @@ async function loaddrone(drone) {
 
 
     // Gets the main contentbox DOM
-    content = document.querySelector('.contentbox')
+    content = document.querySelector('#MAIN')
 
     // Sets it to be visible
     content.style.visibility = "visible"

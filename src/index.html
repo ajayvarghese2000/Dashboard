@@ -48,70 +48,80 @@
                         <p class="text" id="dnt"> DATE AND TIME</p>
                     </div>
                     <div class="menu">
-                        <p class="text">Main</p>
-                        <p class="text">AI Camera</p>
-                        <p class="text">Thermal Camera</p>
-                        <p class="text">Radiation History</p>
-                        <p class="text">Pollution History</p>
-                        <p class="text">Gas History</p>
-                        <p class="text">Maps</p>
+                        <p class="text" onclick=showcontent(this)>Main</p>
+                        <p class="text" onclick=showcontent(this)>AI Camera</p>
+                        <p class="text" onclick=showcontent(this)>Thermal Camera</p>
+                        <p class="text" onclick=showcontent(this)>Radiation History</p>
+                        <p class="text" onclick=showcontent(this)>Pollution History</p>
+                        <p class="text" onclick=showcontent(this)>Gas History</p>
+                        <p class="text" onclick=showcontent(this)>Maps</p>
                     </div>
                 </div>
                 <div class="home">
-                    <div class="sidebar">
-                        <!-- For testing only will be created dynamically -->
-                        <!--                         
-                        <div class="tooltip" onclick=loaddrone(this) id = "0">
-                            <img src="assets/drone.png">
-                            <span class="tooltiptext">Drone 1</span>
-                        </div> 
-                        -->
-
-                    </div>
-                    <div class="contentbox">
-                        <div class="contenttop">
-                            <div class="cam">
-                                <canvas id="aicamfeed"></canvas>
-                            </div>
-                            <div class="scam" id="rads">
-                                <p class="box_name"> Geiger Counter</p>
-                                <div class="gauge">
-                                    <div class="gauge__body">
-                                      <div class="gauge__fill"></div>
-                                      <div class="gauge__cover"></div>
+                    <div class="sidebar"></div>
+                    <div class="heddingcontainer">
+                            <!-- Main Content Box Start -->
+                        <div class="contentbox" id="MAIN">
+                            <div class="contenttop">
+                                <div class="cam">
+                                    <canvas id="aicamfeed"></canvas>
+                                </div>
+                                <div class="scam" id="rads">
+                                    <p class="box_name"> Geiger Counter</p>
+                                    <div class="gauge">
+                                        <div class="gauge__body">
+                                        <div class="gauge__fill"></div>
+                                        <div class="gauge__cover"></div>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="halfcam">
+                                    <div class="line">
+                                        <img src="assets/sun.png">
+                                        <p class="box_name" id="temp">Temp</p>
+                                    </div>
+                                    <div class="line">
+                                        <img src="assets/water.png">
+                                        <p class="box_name" id="humidity">Humidity</p>
+                                    </div>
+                                    <div class="line">
+                                        <img src="assets/pressure.png">
+                                        <p class="box_name" id="pressure">Pressure</p>
+                                    </div>
+                                    <div class="line">
+                                        <img src="assets/light.png">
+                                        <p class="box_name" id="lux">Lux</p>
+                                    </div>
+                                </div>
+                                <div class="gas">
+                                    <div id="gaschart"></div>
+                                </div>
                             </div>
-                            <div class="halfcam">
-                                <div class="line">
-                                    <img src="assets/sun.png">
-                                    <p class="box_name" id="temp">Temp</p>
+                            <div class="contentbottem">
+                                <div class="cam" id="tcamdiv">
+                                    <canvas id="tcamfeed"></canvas>
                                 </div>
-                                <div class="line">
-                                    <img src="assets/water.png">
-                                    <p class="box_name" id="humidity">Humidity</p>
+                                <div class="poulltion">
+                                    <div id="airchart"></div>
                                 </div>
-                                <div class="line">
-                                    <img src="assets/pressure.png">
-                                    <p class="box_name" id="pressure">Pressure</p>
-                                </div>
-                                <div class="line">
-                                    <img src="assets/light.png">
-                                    <p class="box_name" id="lux">Lux</p>
-                                </div>
-                            </div>
-                            <div class="gas">
-                                <div id="gaschart"></div>
                             </div>
                         </div>
-                        <div class="contentbottem">
-                            <div class="cam" id="tcamdiv">
-                                <canvas id="tcamfeed"></canvas>
-                            </div>
-                            <div class="poulltion">
-                                <div id="airchart"></div>
+                        <!-- Main Content Box End -->
+
+                        <!-- Big AI CAM Start -->
+                        <div class="contentbox" id="BIGAI" style="z-index: 3;">
+                            <div class="BIGAI">
+                                <canvas id="bigaicamfeed"></canvas>
                             </div>
                         </div>
+                        <div class="contentbox" id="BIGTHERM" style="z-index: 4;">
+                            <div class="BIGTHERM">
+                                <canvas id="bigtcamfeed"></canvas>
+                            </div></div>
+                        <div class="contentbox" id="BIGRADS" style="z-index: 5;"></div>
+                        <div class="contentbox" id="BIGPOLL" style="z-index: 6;"></div>
+                        <div class="contentbox" id="BIGGAS" style="z-index: 7;"></div>
+                        <div class="contentbox" id="BIGMAP" style="z-index: 8;"></div>
                     </div>
                 </div>
             </div>
@@ -119,5 +129,6 @@
         </div>
 
     <script src="js/main.js"></script>
+    <script src="js/onclickevents.js"></script>
     </body>
 </html>
