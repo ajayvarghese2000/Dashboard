@@ -217,6 +217,9 @@ async function loaddrone(drone) {
         // Adding to the air poll graph
         plotair(air)
 
+        // Adding to the Rad graph
+        plotrad(geiger);
+
 
     });
 
@@ -303,6 +306,10 @@ function clean() {
     Plotly.purge("airchart")
     Plotly.purge("bigairchart")
     newplotair()
+
+    // Deleting old graphs
+    Plotly.purge("radchart")
+    newplotrad()
 }
 
 /**
@@ -548,6 +555,66 @@ function newplotair() {
     Plotly.plot('bigairchart', traces, layout);
 }
 
+/**
+ * @brief plots new radiation quality data
+ * @param {*} rad - CMP
+ */
+ function plotrad(rad) {
+    var time = new Date();
+
+    var data = { 
+        x : [[time]],
+        y : [[rad]]
+    }
+
+    Plotly.extendTraces('radchart', data, [0]);
+}
+
+/**
+ * @brief Creates the radiation graph
+ */
+function newplotrad() {
+    var time = new Date();
+
+    var layout = {
+        title: {
+            text : 'Counts Per Minute',
+            font : {
+                color : "#FFFFFF"
+            }
+        },
+        xaxis: {
+            title: 'Time',
+            color : "#FFFFFF",
+            gridcolor : "#FFFFFF"
+        },
+        yaxis: {
+            title: 'CPM',
+            color : "#FFFFFF",
+            gridcolor : "#FFFFFF"
+        },
+        plot_bgcolor: "#3F3F3F",
+        paper_bgcolor: "#3F3F3F",
+        legend : {
+            bgcolor : "#3F3F3F",
+            bordercolor : "#3F3F3F",
+            font : {
+                color : "#FFFFFF"
+            }
+        }
+    };
+
+    var RAD = {
+        x: [time],
+        y: [],
+        name: 'CPM'
+    }
+    var traces = [RAD]
+
+    Plotly.plot('radchart', traces, layout);
+}
+
+
 window.addEventListener('resize', camsize);
 
 $(document).ready(function () {
@@ -560,5 +627,7 @@ $(document).ready(function () {
     newplotgas()
 
     newplotair()
+
+    newplotrad()
 
 });
