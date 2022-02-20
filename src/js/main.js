@@ -227,6 +227,9 @@ async function loaddrone(drone) {
     // Sets it to be visible
     content.style.visibility = "visible"
 
+    // Sets it to be on top
+    content.style.zIndex  = "1"
+
     // Adds the animation classes
     content.classList.add("animate__animated", "animate__slideInRight")
 
@@ -267,13 +270,21 @@ function drawImageScaled(base64, canvas) {
 // This function deletes old data from the main page
 function clean() {
 
-    // Deleting the old image off the ai cam
+    // Deleting the old image off the ai cams
     aicamfeed = document.getElementById("aicamfeed");
     ctx = aicamfeed.getContext("2d")
     ctx.clearRect(0, 0, aicamfeed.width, aicamfeed.height);
 
-    // Deleting the old image off the thermal cam
+    aicamfeed = document.getElementById("bigaicamfeed");
+    ctx = aicamfeed.getContext("2d")
+    ctx.clearRect(0, 0, aicamfeed.width, aicamfeed.height);
+
+    // Deleting the old image off the thermal cams
     tcamfeed = document.getElementById("tcamfeed");
+    tctx = tcamfeed.getContext("2d")
+    tctx.clearRect(0, 0, tcamfeed.width, tcamfeed.height);
+
+    tcamfeed = document.getElementById("bigtcamfeed");
     tctx = tcamfeed.getContext("2d")
     tctx.clearRect(0, 0, tcamfeed.width, tcamfeed.height);
 
@@ -283,12 +294,14 @@ function clean() {
     // resetting info box
     setInfobox(true, 0, 0, 0, 0)
 
-    // Deleting old graph
+    // Deleting old graphs
     Plotly.purge("gaschart")
+    Plotly.purge("biggaschart")
     newplotgas()
 
-    // Deleting old graph
+    // Deleting old graphs
     Plotly.purge("airchart")
+    Plotly.purge("bigairchart")
     newplotair()
 }
 
@@ -369,6 +382,7 @@ function plotgas(gas) {
         y : [[gas["co"]], [gas["no2"]], [gas["nh3"]]]
     }
     Plotly.extendTraces('gaschart', data,[0,1,2])
+    Plotly.extendTraces('biggaschart', data,[0,1,2])
 }
 
 /**
@@ -423,6 +437,25 @@ function newplotgas() {
     var traces = [co,no2,nh3]
 
     Plotly.plot('gaschart', traces, layout)
+
+    var bco = {
+        x: [time],
+        y: [],
+        name: 'Carbon Monoxide'
+    }
+    var bno2 = {
+        x: [time],
+        y: [],
+        name: 'Nitorgen Dioxide'
+    }
+    var bnh3 = {
+        x: [time],
+        y: [],
+        name: 'Ammonia'
+    }
+    var traces = [bco,bno2,bnh3]
+
+    Plotly.plot('biggaschart', traces, layout)
 }
 
 /**
@@ -436,7 +469,9 @@ function plotair(air) {
         x : [[time],[time],[time]],
         y : [[air["pm1"]],[air["pm2_5"]],[air["pm10"]]]
     }
-    Plotly.extendTraces('airchart', data,[0,1,2])
+
+    Plotly.extendTraces('bigairchart', data, [0,1,2]);
+    Plotly.extendTraces('airchart', data, [0,1,2]);
 }
 
 /**
@@ -490,7 +525,27 @@ function newplotair() {
     }
     var traces = [PM1,PM25,PM10]
 
-    Plotly.plot('airchart', traces, layout)
+    Plotly.plot('airchart', traces, layout);
+
+    var bPM1 = {
+        x: [time],
+        y: [],
+        name: 'PM1'
+    }
+    var bPM25 = {
+        x: [time],
+        y: [],
+        name: 'PM2.5'
+    }
+    var bPM10 = {
+        x: [time],
+        y: [],
+        name: 'PM10'
+    }
+
+    var traces = [bPM1,bPM25,bPM10]
+
+    Plotly.plot('bigairchart', traces, layout);
 }
 
 window.addEventListener('resize', camsize);

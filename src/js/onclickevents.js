@@ -4,12 +4,19 @@
 function hideall() 
 {
     $("#MAIN").css("visibility", "hidden");
+    $("#MAIN").css("z-index", "-1");
     $("#BIGAI").css("visibility", "hidden");
+    $("#BIGAI").css("z-index", "-1");
     $("#BIGTHERM").css("visibility", "hidden");
+    $("#BIGTHERM").css("z-index", "-1");
     $("#BIGRADS").css("visibility", "hidden");
+    $("#BIGRADS").css("z-index", "-1");
     $("#BIGPOLL").css("visibility", "hidden");
+    $("#BIGPOLL").css("z-index", "-1");
     $("#BIGGAS").css("visibility", "hidden");
+    $("#BIGGAS").css("z-index", "-1");
     $("#BIGMAP").css("visibility", "hidden");
+    $("#BIGMAP").css("z-index", "-1");
     return
 }
 
@@ -18,7 +25,7 @@ function hideall()
  * @param {*} id - the DOM element that called the function
  * @returns nothing
  */
-function showcontent(id) {
+async function showcontent(id) {
 
     // selecting the correct DOM element depending on the name of the input
     switch (id.innerHTML) {
@@ -49,28 +56,38 @@ function showcontent(id) {
             break;
     }
     
+    // Gets the main contentbox DOM
+    content = document.querySelector(id);
+
+    // Removing old animations so they dont interfere
+    content.classList.remove("animate__animated", "animate__slideInRight");
+    await sleep(10); // WARNING This is BLOCKING
+
     hideall();
+
+    $(id).css("z-index", "1");
 
     if(DRONES_AVAILABLE == false || CONNECTED == false)
     {
         alertify.alert("Server", "Try connecting to a drone first to see data");
         return;
     }
-    
-    // Gets the main contentbox DOM
-    content = document.querySelector(id)
-
-    // Sets it to be visible
-    content.classList.remove("animate__animated", "animate__slideInRight")
-    content.style.visibility = "visible"
 
     // Adds the animation classes
     content.classList.add("animate__animated", "animate__slideInRight")
 
+    // Sets it to be visible
+    content.style.visibility = "visible"
+
     // Removes the classes aster the animation is finished
     content.addEventListener('animationend', () => {
         content.classList.remove("animate__animated", "animate__slideInRight")
+        return;
     });
 
     return;
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }

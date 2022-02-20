@@ -61,7 +61,7 @@
                     <div class="sidebar"></div>
                     <div class="heddingcontainer">
                             <!-- Main Content Box Start -->
-                        <div class="contentbox" id="MAIN">
+                        <div class="contentbox" id="MAIN" style="z-index: -1;">
                             <div class="contenttop">
                                 <div class="cam">
                                     <canvas id="aicamfeed"></canvas>
@@ -109,19 +109,27 @@
                         <!-- Main Content Box End -->
 
                         <!-- Big AI CAM Start -->
-                        <div class="contentbox" id="BIGAI" style="z-index: 3;">
+                        <div class="contentbox" id="BIGAI" style="z-index: -1;">
                             <div class="BIGAI">
                                 <canvas id="bigaicamfeed"></canvas>
                             </div>
                         </div>
-                        <div class="contentbox" id="BIGTHERM" style="z-index: 4;">
+                        <div class="contentbox" id="BIGTHERM" style="z-index: -1;">
                             <div class="BIGTHERM">
                                 <canvas id="bigtcamfeed"></canvas>
                             </div></div>
-                        <div class="contentbox" id="BIGRADS" style="z-index: 5;"></div>
-                        <div class="contentbox" id="BIGPOLL" style="z-index: 6;"></div>
-                        <div class="contentbox" id="BIGGAS" style="z-index: 7;"></div>
-                        <div class="contentbox" id="BIGMAP" style="z-index: 8;"></div>
+                        <div class="contentbox" id="BIGRADS" style="z-index: -1;"></div>
+                        <div class="contentbox" id="BIGPOLL" style="z-index: -1;">
+                            <div class="bigchart">
+                                <div class ="bigplotchart" id="bigairchart"></div>
+                            </div>
+                        </div>
+                        <div class="contentbox" id="BIGGAS" style="z-index: -1;">
+                            <div class="bigchart">
+                                <div class ="bigplotchart" id="biggaschart"></div>
+                            </div>
+                        </div>
+                        <div class="contentbox" id="BIGMAP" style="z-index: -1;"></div>
                     </div>
                 </div>
             </div>
