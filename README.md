@@ -65,7 +65,7 @@ Some good recommendations:
 ## Documentation
 Users must first login and authenticate themselves before being allowed access to the data
 
-![Login](https://github.com/lboroWMEME-TeamProject/Dashboard/blob/main/docs/img/Dashbaord%20Login.gif?raw=true)
+<p align="center"><img src="https://github.com/lboroWMEME-TeamProject/Dashboard/blob/main/docs/img/Dashbaord%20Login.gif?raw=true" alt="drawing" /></p>
 
 After successfully authenticating themselves the dashboard attempts to make a connection to the server. 
 
