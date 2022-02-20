@@ -26,6 +26,7 @@ This will run in a browser and will make API and SocketIO calls to the server fo
 
 - [Installation](#Installation)
 - [Documentation](#Documentation)
+	- [login](#Login)
 
 ------------
 
@@ -63,6 +64,8 @@ Some good recommendations:
 ------------
 
 ## Documentation
+
+<h3 align="center">Login</h1>
 Users must first login and authenticate themselves before being allowed access to the data
 
 <p align="center"><img src="https://github.com/lboroWMEME-TeamProject/Dashboard/blob/main/docs/img/Dashbaord%20Login.gif?raw=true" alt="drawing" /></p>
