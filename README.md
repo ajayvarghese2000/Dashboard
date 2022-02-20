@@ -26,7 +26,16 @@ This will run in a browser and will make API and SocketIO calls to the server fo
 
 - [Installation](#Installation)
 - [Documentation](#Documentation)
-	- [login](#Login)
+	- [Login](#Login)
+	- [Server Connection](#Server-Connection)
+	- [Drone Sidebar](#Drone-Sidebar)
+	- [Main Page](#Main-Page)
+	- [AI Camera](#AI-Camera)
+	- [Thermal Camera](#Thermal-Camera)
+	- [Radiation History](#Radiation-History)
+	- [Pollution History](#Pollution-History)
+	- [Gas History](#Gas-History)
+	- [Maps](#Maps)
 
 ------------
 
@@ -70,6 +79,7 @@ Users must first login and authenticate themselves before being allowed access t
 
 <p align="center"><img src="https://github.com/lboroWMEME-TeamProject/Dashboard/blob/main/docs/img/Dashbaord%20Login.gif?raw=true" alt="drawing" /></p>
 
+<h3 align="center">Server Connection</h1>
 After successfully authenticating themselves the dashboard attempts to make a connection to the server. 
 
 If the server is down or a successful connection can not be made an error message will pop up in the bottom right corner.
@@ -82,16 +92,32 @@ If no drones are connected it alerts the user and keeps waiting until a drone is
 
 <p align="center"><img src="https://i.imgur.com/GpYuimA.png" alt="drawing" /></p>
 
+<h3 align="center">Drone Sidebar</h1>
+
 When drones do connect up to the server you will be able to view them on the sidebar to the left. When hovered the drone will display its drone ID.
 
 <p align="left"><img src="https://i.imgur.com/AE6x55V.png" alt="drawing" /> </p>
 
 To view the data from a drone simply click on the drone in question. The dashboard will then attempt to make a connection via a websocket to access the drones information.
 
+<h3 align="center">Main Page</h1>
+
 <p align="left"><img src="https://user-images.githubusercontent.com/58085441/147834486-c016d989-d8b6-4c45-bc7c-482ded009333.png" alt="drawing" /> </p>
 
-You will then be precented with the following display. On the left you will be able to see the 2 camera feeds from the drone, the object detection feed is on top and the thermal camera feed is on bottom.
+Once connected you will then be precented with the following display. On the left you will be able to see the 2 camera feeds from the drone, the object detection feed is on top and the thermal camera feed is on bottom.
 
 To the right of that the user has access to all the sensor data from the drone.
 
 The Main dashboard gives an overview of the data, if the user needs to look into a specific sensor in more detail they can using the Menu bar at the top.
+
+<h3 align="center">AI Camera</h1>
+
+<h3 align="center">Thermal Camera</h1>
+
+<h3 align="center">Radiation History</h1>
+
+<h3 align="center">Pollution History</h1>
+
+<h3 align="center">Gas History</h1>
+
+<h3 align="center">Maps</h1>
