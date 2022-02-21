@@ -133,7 +133,11 @@
                                 <div class ="bigplotchart" id="biggaschart"></div>
                             </div>
                         </div>
-                        <div class="contentbox" id="BIGMAP" style="z-index: -1;"></div>
+                        <div class="contentbox" id="BIGMAP" style="z-index: -1;">
+                            <div class="bigchart">
+                                <div id="map"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -142,5 +146,7 @@
 
     <script src="js/main.js"></script>
     <script src="js/onclickevents.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly" async></script>
+    <script src="js/gmaps.js"></script>
     </body>
 </html>
