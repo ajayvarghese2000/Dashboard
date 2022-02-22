@@ -17,6 +17,8 @@ function initMap() {
             center: { lat: 52.770492, lng: -1.225819 },
             zoom: 15,
             mapId: 'c972154f0f975535',
+            mapTypeControl: false,
+            streetViewControl: false,
         });
     }
 
