@@ -10,13 +10,16 @@ let RAD_MARKER = false;
 let AIR_MARKER = false;
 
 function initMap() {
+
     if (MAP_ENABLED) {
         map = new google.maps.Map(document.getElementById("map"), 
         {
             center: { lat: 52.770492, lng: -1.225819 },
             zoom: 15,
+            mapId: 'c972154f0f975535',
         });
     }
+
 }
 
 function updateDrone(lat,log){
