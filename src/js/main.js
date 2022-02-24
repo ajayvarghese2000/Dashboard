@@ -196,20 +196,32 @@ async function loaddrone(drone) {
         // Drawing the AI cam image to the AI Cam Box
         var aicamfeed = document.getElementById("aicamfeed");
         var bigaicamfeed = document.getElementById("bigaicamfeed");
-        drawImageScaled(cam, aicamfeed)
-        drawImageScaled(cam, bigaicamfeed)
-
+        
         // Drawing the Thermal Cam Image to the Thermal Cam Box
         var tcamfeed = document.getElementById("tcamfeed");
         var bigtcamfeed = document.getElementById("bigtcamfeed");
-        drawImageScaled(tcam, tcamfeed)
-        drawImageScaled(tcam, bigtcamfeed)
 
-        // Set radiation level
-        setGaugeValue(geiger)
+        switch (VIEW) {
+            // If the main page is selected
+            case 1:
+                drawImageScaled(cam, aicamfeed)
+                drawImageScaled(tcam, tcamfeed)
+                
+                // Set radiation level
+                setGaugeValue(geiger)
 
-        // Setting the info boxes
-        setInfobox(false, temp, humidity, pressure, lux)
+                // Setting the info boxes
+                setInfobox(false, temp, humidity, pressure, lux)
+                break;
+            // If the big AI page is selected
+            case 2:
+                drawImageScaled(cam, bigaicamfeed)
+            // If the big Thermal page is selected
+            case 3:
+                drawImageScaled(tcam, bigtcamfeed)
+            default:
+                break;
+        }
 
         // Adding to the gas graph
         plotgas(gas)
@@ -240,6 +252,8 @@ async function loaddrone(drone) {
     content.addEventListener('animationend', () => {
         content.classList.remove("animate__animated", "animate__slideInRight")
     });
+
+    VIEW = 1;
 
 
 }

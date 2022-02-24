@@ -1,3 +1,5 @@
+var VIEW = 0;
+
 /**
  * @brief allows to hide all the sub pages
  */
@@ -31,28 +33,36 @@ async function showcontent(id) {
     switch (id.innerHTML) {
         case 'Main':
             id = "#MAIN"
+            VIEW = 1;
             break;
         case 'AI Camera':
             id = "#BIGAI"
+            VIEW = 2;
             break;
         case 'Thermal Camera':
             id = "#BIGTHERM"
+            VIEW = 3;
             break;
         case 'Radiation History':
             id = "#BIGRADS"
+            VIEW = 4;
             break;
         case 'Pollution History':
             id = "#BIGPOLL"
+            VIEW = 5;
             break;
         case 'Gas History':
             id = "#BIGGAS"
+            VIEW = 6;
             break;
         case 'Maps':
             id = "#BIGMAP"
+            VIEW = 7;
             break;
         
         default:
             id = "#MAIN"
+            VIEW = 1;
             break;
     }
     
