@@ -33,7 +33,6 @@ function hideall()
     $("#BIGMAP").css("content-visibility", "hidden");
     $("#BIGMAP").css("z-index", "-1");
 
-    $(".kc_fab_main_btn").css("visibility", "hidden");
     return
 }
 

@@ -115,6 +115,7 @@ async function loaddrone(drone) {
     // Clean Up main
     clean()
     hideall();
+    $(".kc_fab_main_btn").css("visibility", "hidden");
 
     // Attempts to close any old connections
     try 
