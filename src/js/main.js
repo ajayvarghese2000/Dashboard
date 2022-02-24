@@ -402,6 +402,22 @@ function plotgas(gas) {
         x : [[time],[time],[time]],
         y : [[gas["co"]], [gas["no2"]], [gas["nh3"]]]
     }
+    var graph_difference = 1;
+    var olderTime = new Date(Date.parse(time) - 1000 * (graph_difference) )
+    var futureTime = new Date(Date.parse(time) + 1000 * (graph_difference) )
+
+    var minuteView = {
+        xaxis: {
+          type: 'date',
+          color : "#FFFFFF",
+          gridcolor : "#FFFFFF",
+          range: [olderTime,futureTime]
+        }
+    };
+
+    Plotly.relayout('gaschart', minuteView);
+    Plotly.relayout('biggaschart', minuteView);
+
     Plotly.extendTraces('gaschart', data,[0,1,2])
     Plotly.extendTraces('biggaschart', data,[0,1,2])
 }
@@ -411,6 +427,9 @@ function plotgas(gas) {
  */
 function newplotgas() {
     var time = new Date();
+    var graph_difference = 1;
+    var olderTime = new Date(Date.parse(time) - 1000 * (graph_difference) )
+    var futureTime = new Date(Date.parse(time) + 1000 * (graph_difference) )
 
     var layout = {
         title: {
@@ -421,8 +440,10 @@ function newplotgas() {
         },
         xaxis: {
             title: 'Time',
+            type: 'date',
             color : "#FFFFFF",
-            gridcolor : "#FFFFFF"
+            gridcolor : "#FFFFFF",
+            range: [olderTime,futureTime]
         },
         yaxis: {
             title: 'PPM',
@@ -491,6 +512,22 @@ function plotair(air) {
         y : [[air["pm1"]],[air["pm2_5"]],[air["pm10"]]]
     }
 
+    var graph_difference = 1;
+    var olderTime = new Date(Date.parse(time) - 1000 * (graph_difference) )
+    var futureTime = new Date(Date.parse(time) + 1000 * (graph_difference) )
+
+    var minuteView = {
+        xaxis: {
+          type: 'date',
+          color : "#FFFFFF",
+          gridcolor : "#FFFFFF",
+          range: [olderTime,futureTime]
+        }
+    };
+
+    Plotly.relayout('airchart', minuteView);
+    Plotly.relayout('bigairchart', minuteView);
+
     Plotly.extendTraces('bigairchart', data, [0,1,2]);
     Plotly.extendTraces('airchart', data, [0,1,2]);
 }
@@ -500,6 +537,9 @@ function plotair(air) {
  */
 function newplotair() {
     var time = new Date();
+    var graph_difference = 1;
+    var olderTime = new Date(Date.parse(time) - 1000 * (graph_difference) )
+    var futureTime = new Date(Date.parse(time) + 1000 * (graph_difference) )
 
     var layout = {
         title: {
@@ -511,7 +551,8 @@ function newplotair() {
         xaxis: {
             title: 'Time',
             color : "#FFFFFF",
-            gridcolor : "#FFFFFF"
+            gridcolor : "#FFFFFF",
+            range: [olderTime,futureTime]
         },
         yaxis: {
             title: 'ug/m3',
@@ -581,6 +622,21 @@ function newplotair() {
         y : [[rad]]
     }
 
+    var graph_difference = 1;
+    var olderTime = new Date(Date.parse(time) - 1000 * (graph_difference) )
+    var futureTime = new Date(Date.parse(time) + 1000 * (graph_difference) )
+
+    var minuteView = {
+        xaxis: {
+          type: 'date',
+          color : "#FFFFFF",
+          gridcolor : "#FFFFFF",
+          range: [olderTime,futureTime]
+        }
+    };
+
+    Plotly.relayout('radchart', minuteView);
+
     Plotly.extendTraces('radchart', data, [0]);
 }
 
@@ -589,6 +645,9 @@ function newplotair() {
  */
 function newplotrad() {
     var time = new Date();
+    var graph_difference = 1;
+    var olderTime = new Date(Date.parse(time) - 1000 * (graph_difference) )
+    var futureTime = new Date(Date.parse(time) + 1000 * (graph_difference) )
 
     var layout = {
         title: {
@@ -600,7 +659,8 @@ function newplotrad() {
         xaxis: {
             title: 'Time',
             color : "#FFFFFF",
-            gridcolor : "#FFFFFF"
+            gridcolor : "#FFFFFF",
+            range: [olderTime,futureTime]
         },
         yaxis: {
             title: 'CPM',
