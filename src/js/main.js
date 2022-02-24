@@ -6,6 +6,12 @@ var sock
 var DRONES_AVAILABLE = false;
 var CONNECTED = false;
 
+var UPDATE_INTERVAL = 1;
+var GRAPH_DIFFERENCE = 5;
+var OLD_TIME = new Date();
+var NEW_TIME = new Date(Date.parse(OLD_TIME) + 1000 * (UPDATE_INTERVAL))
+
+
 if (TESTING) {
     URI = "http://ajayvarghese.me"
 }
@@ -163,7 +169,8 @@ async function loaddrone(drone) {
         // Variables to store data from the data packet
         var id, temp, pressure, humidity, lux, geiger, gas, air, gps, cam
 
-        try{
+        try
+        {
 
             // Attempts to get the data from the data packet
             id = data["dname"]
@@ -201,17 +208,33 @@ async function loaddrone(drone) {
         var tcamfeed = document.getElementById("tcamfeed");
         var bigtcamfeed = document.getElementById("bigtcamfeed");
 
+        var time_now = new Date();
+        var UPDATE = false;
+
+        if (time_now > NEW_TIME) {
+            UPDATE = true;
+            OLD_TIME = time_now;
+            NEW_TIME = new Date(Date.parse(OLD_TIME) + 1000 * (UPDATE_INTERVAL))
+        } 
+        else 
+        {
+            UPDATE = false;
+        }
+
         switch (VIEW) {
             // If the main page is selected
             case 1:
                 drawImageScaled(cam, aicamfeed)
                 drawImageScaled(tcam, tcamfeed)
-                
-                // Set radiation level
-                setGaugeValue(geiger)
 
-                // Setting the info boxes
-                setInfobox(false, temp, humidity, pressure, lux)
+                if (UPDATE) {
+                    // Set radiation level
+                    setGaugeValue(geiger)
+
+                    // Setting the info boxes
+                    setInfobox(false, temp, humidity, pressure, lux)
+                }
+
                 break;
             // If the big AI page is selected
             case 2:
@@ -223,15 +246,17 @@ async function loaddrone(drone) {
                 break;
         }
 
-        // Adding to the gas graph
-        plotgas(gas)
+        if (UPDATE) {
+            
+            // Adding to the gas graph
+            plotgas(gas)
 
-        // Adding to the air poll graph
-        plotair(air)
-
-        // Adding to the Rad graph
-        plotrad(geiger);
-
+            // Adding to the air poll graph
+            plotair(air)
+    
+            // Adding to the Rad graph
+            plotrad(geiger);
+        }
 
     });
 
@@ -404,9 +429,8 @@ function plotgas(gas) {
         x : [[time],[time],[time]],
         y : [[gas["co"]], [gas["no2"]], [gas["nh3"]]]
     }
-    var graph_difference = 1;
-    var olderTime = new Date(Date.parse(time) - 1000 * (graph_difference) )
-    var futureTime = new Date(Date.parse(time) + 1000 * (graph_difference) )
+    var olderTime = new Date(Date.parse(time) - 1000 * (GRAPH_DIFFERENCE) )
+    var futureTime = new Date(Date.parse(time) + 1000 * (GRAPH_DIFFERENCE) )
 
     var minuteView = {
         xaxis: {
@@ -429,9 +453,8 @@ function plotgas(gas) {
  */
 function newplotgas() {
     var time = new Date();
-    var graph_difference = 1;
-    var olderTime = new Date(Date.parse(time) - 1000 * (graph_difference) )
-    var futureTime = new Date(Date.parse(time) + 1000 * (graph_difference) )
+    var olderTime = new Date(Date.parse(time) - 1000 * (GRAPH_DIFFERENCE) )
+    var futureTime = new Date(Date.parse(time) + 1000 * (GRAPH_DIFFERENCE) )
 
     var layout = {
         title: {
@@ -514,9 +537,8 @@ function plotair(air) {
         y : [[air["pm1"]],[air["pm2_5"]],[air["pm10"]]]
     }
 
-    var graph_difference = 1;
-    var olderTime = new Date(Date.parse(time) - 1000 * (graph_difference) )
-    var futureTime = new Date(Date.parse(time) + 1000 * (graph_difference) )
+    var olderTime = new Date(Date.parse(time) - 1000 * (GRAPH_DIFFERENCE) )
+    var futureTime = new Date(Date.parse(time) + 1000 * (GRAPH_DIFFERENCE) )
 
     var minuteView = {
         xaxis: {
@@ -539,9 +561,8 @@ function plotair(air) {
  */
 function newplotair() {
     var time = new Date();
-    var graph_difference = 1;
-    var olderTime = new Date(Date.parse(time) - 1000 * (graph_difference) )
-    var futureTime = new Date(Date.parse(time) + 1000 * (graph_difference) )
+    var olderTime = new Date(Date.parse(time) - 1000 * (GRAPH_DIFFERENCE) )
+    var futureTime = new Date(Date.parse(time) + 1000 * (GRAPH_DIFFERENCE) )
 
     var layout = {
         title: {
@@ -624,9 +645,8 @@ function newplotair() {
         y : [[rad]]
     }
 
-    var graph_difference = 1;
-    var olderTime = new Date(Date.parse(time) - 1000 * (graph_difference) )
-    var futureTime = new Date(Date.parse(time) + 1000 * (graph_difference) )
+    var olderTime = new Date(Date.parse(time) - 1000 * (GRAPH_DIFFERENCE) )
+    var futureTime = new Date(Date.parse(time) + 1000 * (GRAPH_DIFFERENCE) )
 
     var minuteView = {
         xaxis: {
@@ -647,9 +667,8 @@ function newplotair() {
  */
 function newplotrad() {
     var time = new Date();
-    var graph_difference = 1;
-    var olderTime = new Date(Date.parse(time) - 1000 * (graph_difference) )
-    var futureTime = new Date(Date.parse(time) + 1000 * (graph_difference) )
+    var olderTime = new Date(Date.parse(time) - 1000 * (GRAPH_DIFFERENCE) )
+    var futureTime = new Date(Date.parse(time) + 1000 * (GRAPH_DIFFERENCE) )
 
     var layout = {
         title: {
