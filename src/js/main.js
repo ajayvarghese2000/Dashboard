@@ -253,6 +253,8 @@ async function loaddrone(drone) {
         content.classList.remove("animate__animated", "animate__slideInRight")
     });
 
+    $('#MAIN').css("content-visibility", "visible");
+
     VIEW = 1;
 
 

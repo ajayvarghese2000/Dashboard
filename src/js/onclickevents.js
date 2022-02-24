@@ -6,18 +6,31 @@ var VIEW = 0;
 function hideall() 
 {
     $("#MAIN").css("visibility", "hidden");
+    $("#MAIN").css("content-visibility", "hidden");
     $("#MAIN").css("z-index", "-1");
+
     $("#BIGAI").css("visibility", "hidden");
+    $("#BIGAI").css("content-visibility", "hidden");
     $("#BIGAI").css("z-index", "-1");
+    
     $("#BIGTHERM").css("visibility", "hidden");
+    $("#BIGTHERM").css("content-visibility", "hidden");
     $("#BIGTHERM").css("z-index", "-1");
+
     $("#BIGRADS").css("visibility", "hidden");
+    $("#BIGRADS").css("content-visibility", "hidden");
     $("#BIGRADS").css("z-index", "-1");
+
     $("#BIGPOLL").css("visibility", "hidden");
+    $("#BIGPOLL").css("content-visibility", "hidden");
     $("#BIGPOLL").css("z-index", "-1");
+
     $("#BIGGAS").css("visibility", "hidden");
+    $("#BIGGAS").css("content-visibility", "hidden");
     $("#BIGGAS").css("z-index", "-1");
+
     $("#BIGMAP").css("visibility", "hidden");
+    $("#BIGMAP").css("content-visibility", "hidden");
     $("#BIGMAP").css("z-index", "-1");
     return
 }
@@ -88,6 +101,7 @@ async function showcontent(id) {
 
     // Sets it to be visible
     content.style.visibility = "visible"
+    $(id).css("content-visibility", "visible");
 
     // Removes the classes aster the animation is finished
     content.addEventListener('animationend', () => {
