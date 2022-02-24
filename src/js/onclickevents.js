@@ -32,6 +32,8 @@ function hideall()
     $("#BIGMAP").css("visibility", "hidden");
     $("#BIGMAP").css("content-visibility", "hidden");
     $("#BIGMAP").css("z-index", "-1");
+
+    $(".kc_fab_main_btn").css("visibility", "hidden");
     return
 }
 
@@ -114,4 +116,26 @@ async function showcontent(id) {
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function disconnect() {
+    
+    sock.disconnect();
+
+    $("#infomessage").html("Disconnected From Drone")
+
+    content = document.querySelector(".kc_fab_main_btn");
+        
+    // Removes any existing animations
+    content.classList.remove("animate__animated", "animate__backInRight", "animate__backOutRight");
+
+    // Adds the animation classes
+    content.classList.add("animate__animated", "animate__backOutRight")
+
+    content.addEventListener('animationend', () => {
+        content.classList.remove("animate__animated", "animate__backOutRight")
+        return;
+    });
+
+    $(".kc_fab_main_btn").css("visibility", "hidden");
 }

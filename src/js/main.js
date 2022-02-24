@@ -123,6 +123,9 @@ async function loaddrone(drone) {
 
         // Disconnection message
         $("#infomessage").html("Disconnected To Drone")
+
+        // Sets the Connected status
+        CONNECTED = false;
     }
     catch (error) 
     {
@@ -149,6 +152,21 @@ async function loaddrone(drone) {
 
         // Sets the Connected status
         CONNECTED = true;
+
+        // Animate in the disconnect button
+        $(".kc_fab_main_btn").css("visibility", "visible");
+        content = document.querySelector(".kc_fab_main_btn");
+        
+        // Removes any existing animations
+        content.classList.remove("animate__animated", "animate__backInRight");
+        // Adds the animation classes
+        content.classList.add("animate__animated", "animate__backInRight")
+
+        content.addEventListener('animationend', () => {
+            content.classList.remove("animate__animated", "animate__backInRight")
+            return;
+        });
+
     }
     catch (error) 
     {

@@ -525,3 +525,27 @@ body {
     height: 100%;
     border-radius: 30px;
 }
+
+.kc_fab_main_btn {
+    background-color: #F44336;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background: #F44336;
+    border: none;
+    outline: none;
+    color: #FFF;
+    font-size: 15px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transition: .3s;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    left: 97vw;
+    top: 10vh;
+    visibility: hidden;
+}
+  
+ .kc_fab_main_btn:hover {
+    transform: scale(1.1);
+    background: #86251e;
+}
