@@ -261,6 +261,8 @@ async function loaddrone(drone) {
             // If the big Thermal page is selected
             case 3:
                 drawImageScaled(tcam, bigtcamfeed)
+            case 7:
+                maps_updates_drone(gps)
             default:
                 break;
         }
@@ -370,6 +372,9 @@ function clean() {
     // Deleting old graphs
     Plotly.purge("radchart")
     newplotrad()
+
+    // Clearing data off the map
+    resetmap()
 }
 
 /**

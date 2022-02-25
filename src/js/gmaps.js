@@ -9,6 +9,10 @@ let GAS_MARKER = false;
 let RAD_MARKER = false;
 let AIR_MARKER = false;
 
+var MAPS_UPDATE_INTERVAL = 1;
+var MAPS_OLD_TIME = new Date();
+var MAPS_NEW_TIME = new Date(Date.parse(MAPS_OLD_TIME) + 1000 * (MAPS_UPDATE_INTERVAL))
+
 function initMap() {
 
     if (MAP_ENABLED) {
@@ -24,6 +28,7 @@ function initMap() {
 
 }
 
+// Adds the drone marker onto the map using Google API
 function updateDrone(lat,log){
 
     const image = {
@@ -52,6 +57,7 @@ function updateDrone(lat,log){
     return;
 }
 
+// Clears all data off graph
 function resetmap(){
     
     if (DRONE_MARKER != false) {
@@ -63,4 +69,26 @@ function resetmap(){
     }
 
     return;
+}
+
+// Takes the GPS pos of the drone and updates the graph with it.
+function maps_updates_drone(gps){
+    if (maps_update_scheduler() == false) {
+        return;
+    }
+    updateDrone(gps["lat"], gps["long"])
+    return;
+}
+
+// Function to only update the map when the MAPS_UPDATE_INTERVAL time has passed
+function maps_update_scheduler() {
+    var time_now = new Date();
+    var UPDATE = false;
+
+    if (time_now > MAPS_NEW_TIME) {
+        UPDATE = true;
+        MAPS_OLD_TIME = time_now;
+        MAPS_NEW_TIME = new Date(Date.parse(OLD_TIME) + 1000 * (MAPS_UPDATE_INTERVAL))
+    } 
+    return UPDATE;
 }
