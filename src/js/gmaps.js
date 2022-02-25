@@ -9,6 +9,9 @@ let GAS_MARKER = false;
 let RAD_MARKER = false;
 let AIR_MARKER = false;
 
+let HEATMAP_DATA = [];
+let HEATMAP = false;
+
 var MAPS_UPDATE_INTERVAL = 1;
 var MAPS_OLD_TIME = new Date();
 var MAPS_NEW_TIME = new Date(Date.parse(MAPS_OLD_TIME) + 1000 * (MAPS_UPDATE_INTERVAL))
@@ -61,11 +64,24 @@ function updateDrone(lat,log){
 function resetmap(){
     
     if (DRONE_MARKER != false) {
+        
         // deleting the marker
         DRONE_MARKER.setMap(null);
 
         // setting to default state
         DRONE_MARKER = false;
+    }
+
+    if (HEATMAP != false) {
+
+        // removing data
+        HEATMAP_DATA = [];
+
+        // removing from current map
+        HEATMAP.setMap(null);
+
+        // resetting value
+        HEATMAP = false;
     }
 
     return;
@@ -91,4 +107,33 @@ function maps_update_scheduler() {
         MAPS_NEW_TIME = new Date(Date.parse(OLD_TIME) + 1000 * (MAPS_UPDATE_INTERVAL))
     } 
     return UPDATE;
+}
+
+function maps_rads_heatmap(gps,rads) {
+
+    if (maps_update_scheduler() == false) {
+        return;
+    }
+
+    var weight = (rads / GEIGER_MAX) * 2;
+    var latlog = new google.maps.LatLng(gps["lat"], gps["long"]);
+    var payload = {location: latlog, weight: weight}
+    
+    HEATMAP_DATA.push(payload)
+
+    if (HEATMAP == false) {
+        HEATMAP = new google.maps.visualization.HeatmapLayer({
+            data: HEATMAP_DATA,
+            radius: 15,
+            maxIntensity: 1
+        });
+
+        HEATMAP.setMap(map);
+    }
+
+    HEATMAP.setData(HEATMAP_DATA);
+
+    
+
+    return;
 }

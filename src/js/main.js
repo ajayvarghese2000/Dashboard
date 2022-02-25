@@ -6,10 +6,15 @@ var sock
 var DRONES_AVAILABLE = false;
 var CONNECTED = false;
 
+// Variables for the update scheduler
 var UPDATE_INTERVAL = 1;
 var GRAPH_DIFFERENCE = 5;
 var OLD_TIME = new Date();
 var NEW_TIME = new Date(Date.parse(OLD_TIME) + 1000 * (UPDATE_INTERVAL))
+
+// The Min and Max Value of geiger sensor
+const GEIGER_MIN = 0;
+const GEIGER_MAX = 2500;
 
 
 if (TESTING) {
@@ -230,6 +235,9 @@ async function loaddrone(drone) {
         var time_now = new Date();
         var UPDATE = false;
 
+        // Adding to the heatmap
+        maps_rads_heatmap(gps, rads)
+
         if (time_now > NEW_TIME) {
             UPDATE = true;
             OLD_TIME = time_now;
@@ -278,6 +286,7 @@ async function loaddrone(drone) {
             // Adding to the Rad graph
             plotrad(geiger);
         }
+
 
     });
 
@@ -384,17 +393,13 @@ function clean() {
  */
 function setGaugeValue(value) {
 
-    // The Min and Max Value
-    const min = 0;
-    const max = 2500;
-
     // if the value is too big/too small it is rejected
-    if (value > max || value < min) {
+    if (value > GEIGER_MAX || value < GEIGER_MIN) {
         return
     }
 
     // The % of the max value used to rotate the bar
-    let rvalue = value / max;
+    let rvalue = value / GEIGER_MAX;
 
     // Rotate the gauge bar by the % above
     document.querySelector(".gauge__fill").style.transform = 'rotate(' + rvalue / 2 + 'turn)';
