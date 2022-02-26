@@ -549,3 +549,103 @@ body {
     transform: scale(1.1);
     background: #86251e;
 }
+
+.map_key{
+    position: absolute;
+    display: flex;
+    z-index: 5;
+    width: 100px;
+    height: 60px;
+    left: 0%;
+    bottom: 0%;
+    border-radius: 30px;
+    background-color: #3F3F3F;
+    transition: all 0.3s linear;
+    margin: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.map_key:hover{
+    width: 300px;
+    height: 300px;
+}
+
+#key_logo{
+    position: relative;
+    display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    margin: 0;
+    color: rgb(255, 255, 255);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#key_logo p{
+    margin: 0;
+    margin-left: 10px;
+}
+
+.key_entry{
+    position: relative;
+    display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    margin: 0;
+    color: rgb(255, 255, 255);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.key_entry p{
+    margin: 0;
+    margin-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.key_entry img{
+    margin: 0;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+#rads_key{
+    flex-direction: column;
+    width: 90%;
+}
+
+#rads_key p{
+    margin: 0;
+}
+
+#rads_key div{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#rads_gard{
+    position: relative;
+    width: 250px;
+    height: 10px;
+    background: linear-gradient(to right, green, yellow,red);
+}

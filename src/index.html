@@ -115,30 +115,78 @@
                                 <canvas id="bigaicamfeed"></canvas>
                             </div>
                         </div>
+                        <!-- Big AI CAM End -->
+
+                        <!-- Big Thermal CAM Start -->
                         <div class="contentbox" id="BIGTHERM" style="z-index: -1;">
                             <div class="BIGTHERM">
                                 <canvas id="bigtcamfeed"></canvas>
-                            </div></div>
+                            </div>
+                        </div>
+                        <!-- Big Thermal CAM End -->
+
+                        <!-- Big Radiation Graph Start -->
                         <div class="contentbox" id="BIGRADS" style="z-index: -1;">
                             <div class="bigchart">
                                 <div class ="bigplotchart" id="radchart"></div>
                             </div>
                         </div>
+                        <!-- Big Radiation Graph End -->
+                        
+                        <!-- Big Pollution Graph Start -->
                         <div class="contentbox" id="BIGPOLL" style="z-index: -1;">
                             <div class="bigchart">
                                 <div class ="bigplotchart" id="bigairchart"></div>
                             </div>
                         </div>
+                        <!-- Big Pollution Graph End -->
+
+                        <!-- Big Gas Graph Start -->
                         <div class="contentbox" id="BIGGAS" style="z-index: -1;">
                             <div class="bigchart">
                                 <div class ="bigplotchart" id="biggaschart"></div>
                             </div>
                         </div>
+                        <!-- Big Gas Graph End -->
+
+                        <!-- Map Start -->
                         <div class="contentbox" id="BIGMAP" style="z-index: -1;">
                             <div class="bigchart">
                                 <div id="map"></div>
+                                <div class="map_key">
+                                    <div id="key_logo">
+                                        <img src="assets/key.png" width="32px" height="32px">
+                                        <p>KEY</p>
+                                    </div>
+                                    <div class="key_entry">
+                                        <img src="assets/person.png" width="32px" height="32px">
+                                        <p>People Detected</p>
+                                    </div>
+                                    <div class="key_entry">
+                                        <img src="assets/nh3.png" width="32px" height="32px">
+                                        <img src="assets/no2.png" width="32px" height="32px">
+                                        <img src="assets/co.png" width="32px" height="32px">
+                                        <p>High Levels of Gas</p>
+                                    </div>
+                                    <div class="key_entry">
+                                        <img src="assets/pm1.png" width="32px" height="32px">
+                                        <img src="assets/pm25.png" width="32px" height="32px">
+                                        <img src="assets/pm10.png" width="32px" height="32px">
+                                        <p>High Levels of Particulates</p>
+                                    </div>
+                                    <div class="key_entry" id="rads_key">
+                                        <div id="rads_gard"></div>
+                                        <div>
+                                            <p>0</p>
+                                            <p>Radiation levels (CPM)</p>
+                                            <p>2500</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <!-- Map End -->
                     </div>
                 </div>
             </div>
