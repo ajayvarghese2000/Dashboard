@@ -1,4 +1,4 @@
-var TESTING = true;
+var TESTING = false;
 var URI = window.location.protocol + "//" + window.location.host
 var firstcheck = false
 var servererror = false
@@ -18,7 +18,7 @@ const GEIGER_MAX = 2500;
 
 
 if (TESTING) {
-    URI = "http://ajayvarghese.me"
+    URI = "https://ajayvarghese.me"
 }
 
 // This function will check with the server what drones are connected
