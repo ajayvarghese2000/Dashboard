@@ -751,18 +751,21 @@ function sensor_thresholds(gps, air, gas, person){
     air = [air["pm1"], air["pm2_5"], air["pm10"]]
     gas = [gas["co"], gas["no2"], gas["nh3"]]
 
+    var offset_lat = 0.0001933830801042884 * 0.479425538604203
+    var offset_lng = 0.0003 * 0.8775825618903728
+
 
     for (let i = 0; i < air.length; i++) {
         const element = air[i];
         if (element > air_thresholds) {
-            marker_serach(lat, lng, i+1)
+            marker_serach(lat+offset_lat, lng+offset_lng, i+1)
         }
     }
 
     for (let i = 0; i < gas.length; i++) {
         const element = gas[i];
         if (element > gas_thresholds) {
-            marker_serach(lat, lng, i+4)
+            marker_serach(lat-offset_lng, lng-offset_lng, i+4)
         }
     }
 
