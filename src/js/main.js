@@ -191,7 +191,7 @@ async function loaddrone(drone) {
     sock.on(String(drone.id), function (data) {
 
         // Variables to store data from the data packet
-        var id, temp, pressure, humidity, lux, geiger, gas, air, gps, cam
+        var id, temp, pressure, humidity, lux, geiger, gas, air, gps, cam, person
 
         try
         {
@@ -208,6 +208,7 @@ async function loaddrone(drone) {
             gps = data["gps"]
             cam = data["cam"]
             tcam = data["tcam"]
+            person = data["person"]
 
         } 
         catch (error) 
@@ -237,6 +238,7 @@ async function loaddrone(drone) {
 
         // Adding to the heatmap
         maps_rads_heatmap(gps, rads)
+        sensor_thresholds(gps, air, gas, person)
 
         if (time_now > NEW_TIME) {
             UPDATE = true;
@@ -738,6 +740,38 @@ function newplotrad() {
     Plotly.plot('radchart', traces, layout);
 }
 
+
+function sensor_thresholds(gps, air, gas, person){
+    lat = gps["lat"]
+    lng = gps["long"]
+
+    air_thresholds = 0.95;
+    gas_thresholds = 0.95;
+
+    air = [air["pm1"], air["pm2_5"], air["pm10"]]
+    gas = [gas["co"], gas["no2"], gas["nh3"]]
+
+
+    for (let i = 0; i < air.length; i++) {
+        const element = air[i];
+        if (element > air_thresholds) {
+            marker_serach(lat, lng, i+1)
+        }
+    }
+
+    for (let i = 0; i < gas.length; i++) {
+        const element = gas[i];
+        if (element > gas_thresholds) {
+            marker_serach(lat, lng, i+4)
+        }
+    }
+
+    if (person == true) {
+        marker_serach(lat, lng, 0)
+    }
+
+    return;
+}
 
 window.addEventListener('resize', camsize);
 

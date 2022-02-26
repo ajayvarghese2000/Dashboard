@@ -4,10 +4,16 @@ let map;
 
 // Global locations of the relevant markers
 let DRONE_MARKER = false;
-let PEOPLE_MARKER = false;
-let GAS_MARKER = false;
-let RAD_MARKER = false;
-let AIR_MARKER = false;
+
+let PEOPLE_MARKER = [];
+
+let GAS_MARKER_CO = [];
+let GAS_MARKER_NO2 = [];
+let GAS_MARKER_NH3 = [];
+
+let AIR_MARKER_PM1 = [];
+let AIR_MARKER_PM2_5 = [];
+let AIR_MARKER_PM10 = [];
 
 let HEATMAP_DATA = [];
 let HEATMAP = false;
@@ -84,6 +90,69 @@ function resetmap(){
         HEATMAP = false;
     }
 
+    if (GAS_MARKER_CO.length>0) {
+
+        for (let i = 0; i < GAS_MARKER_CO.length; i++) {
+            GAS_MARKER_CO[i].setMap(null)
+        }
+
+        GAS_MARKER_CO = []
+    }
+
+    if (GAS_MARKER_NO2.length>0) {
+
+        for (let i = 0; i < GAS_MARKER_NO2.length; i++) {
+            GAS_MARKER_NO2[i].setMap(null)
+        }
+
+        GAS_MARKER_NO2 = []
+    }
+
+    if (GAS_MARKER_NH3.length>0) {
+
+        for (let i = 0; i < GAS_MARKER_NH3.length; i++) {
+            GAS_MARKER_NH3[i].setMap(null)
+        }
+
+        GAS_MARKER_NH3 = []
+    }
+
+    if (AIR_MARKER_PM1.length>0) {
+
+        for (let i = 0; i < AIR_MARKER_PM1.length; i++) {
+            AIR_MARKER_PM1[i].setMap(null)
+        }
+
+        AIR_MARKER_PM1 = []
+    }
+
+    if (AIR_MARKER_PM2_5.length>0) {
+
+        for (let i = 0; i < AIR_MARKER_PM2_5.length; i++) {
+            AIR_MARKER_PM2_5[i].setMap(null)
+        }
+
+        AIR_MARKER_PM2_5 = []
+    }
+
+    if (AIR_MARKER_PM10.length>0) {
+
+        for (let i = 0; i < AIR_MARKER_PM10.length; i++) {
+            AIR_MARKER_PM10[i].setMap(null)
+        }
+
+        AIR_MARKER_PM10 = []
+    }
+
+    if (PEOPLE_MARKER.length>0) {
+
+        for (let i = 0; i < PEOPLE_MARKER.length; i++) {
+            PEOPLE_MARKER[i].setMap(null)
+        }
+
+        PEOPLE_MARKER = []
+    }
+
     return;
 }
 
@@ -136,4 +205,209 @@ function maps_rads_heatmap(gps,rads) {
     
 
     return;
+}
+
+// Function for adding new Gas markers
+// type: 0 - CO, 1 - NO2, 2 - NH3
+function updateGas(lat,log,type){
+
+    switch (type) {
+        case 0:
+            var image = {
+                url: 'assets/co.png',
+                scaledSize: new google.maps.Size(30, 30)
+            };
+            break;
+        case 1:
+            var image = {
+                url: 'assets/no2.png',
+                scaledSize: new google.maps.Size(30, 30)
+            };
+            break;
+        case 2:
+            var image = {
+                url: 'assets/nh3.png',
+                scaledSize: new google.maps.Size(30, 30)
+            };
+            break;
+        default:
+            break;
+    }
+
+    var marker = new google.maps.Marker({
+        position:{ lat: lat, lng: log },
+        icon: image,
+    });
+
+    switch (type) {
+        case 0:
+            GAS_MARKER_CO.push(marker)
+            GAS_MARKER_CO[GAS_MARKER_CO.length - 1].setMap(map);
+            break;
+        case 1:
+            GAS_MARKER_NO2.push(marker)
+            GAS_MARKER_NO2[GAS_MARKER_NO2.length - 1].setMap(map);
+            break;
+        case 2:
+            GAS_MARKER_NH3.push(marker)
+            GAS_MARKER_NH3[GAS_MARKER_NH3.length - 1].setMap(map);
+            break;
+        default:
+            break;
+    }
+
+    return;
+}
+
+// Function for adding new Air Markers
+// type: 0 - PM1, 1 - PM2.5, 2 - PM10
+function updateAir(lat,log,type){
+
+    switch (type) {
+        case 0:
+            var image = {
+                url: 'assets/pm1.png',
+                scaledSize: new google.maps.Size(30, 30)
+            };
+            break;
+        case 1:
+            var image = {
+                url: 'assets/pm25.png',
+                scaledSize: new google.maps.Size(30, 30)
+            };
+            break;
+        case 2:
+            var image = {
+                url: 'assets/pm10.png',
+                scaledSize: new google.maps.Size(30, 30)
+            };
+            break;
+        default:
+            break;
+    }
+
+    var marker = new google.maps.Marker({
+        position:{ lat: lat, lng: log },
+        icon: image,
+    });
+
+    switch (type) {
+        case 0:
+            AIR_MARKER_PM1.push(marker)
+            AIR_MARKER_PM1[AIR_MARKER_PM1.length - 1].setMap(map);
+            break;
+        case 1:
+            AIR_MARKER_PM2_5.push(marker)
+            AIR_MARKER_PM2_5[AIR_MARKER_PM2_5.length - 1].setMap(map);
+            break;
+        case 2:
+            AIR_MARKER_PM10.push(marker)
+            AIR_MARKER_PM10[AIR_MARKER_PM10.length - 1].setMap(map);
+            break;
+        default:
+            break;
+    }
+
+    return;
+}
+
+function updatePeople(lat, log) {
+    var image = {
+        url: 'assets/person.png',
+        scaledSize: new google.maps.Size(30, 30)
+    };
+
+    var marker = new google.maps.Marker({
+        position:{ lat: lat, lng: log },
+        icon: image,
+    });
+
+    PEOPLE_MARKER.push(marker);
+    PEOPLE_MARKER[PEOPLE_MARKER.length - 1].setMap(map);
+
+    return;
+}
+
+function marker_serach(i_lat,i_lng, type) {
+    if (maps_update_scheduler() == false) {
+        return;
+    }
+
+    var searcharr;
+    const lat_offset = 0.00055
+    const lng_offset = 0.001
+
+    switch (type) {
+        case 0:
+            searcharr = PEOPLE_MARKER;
+            break;
+        case 1:
+            searcharr = AIR_MARKER_PM1;
+            break;
+        case 2:
+            searcharr = AIR_MARKER_PM2_5;
+            break;
+        case 3:
+            searcharr = AIR_MARKER_PM10;
+            break;
+        case 4:
+            searcharr = GAS_MARKER_CO;
+            break;
+        case 5:
+            searcharr = GAS_MARKER_NO2;
+            break;
+        case 6:
+            searcharr = GAS_MARKER_NH3;
+            break;
+        default:
+            return;
+    }
+
+    if (searcharr.length > 0) {
+        for (let i = 0; i < searcharr.length; i++) {
+            const marker = searcharr[i];
+            const lat = marker.getPosition().lat();
+            const lng = marker.getPosition().lng();
+            const max_lat = lat + lat_offset;
+            const min_lat = lat - lat_offset;
+            const max_lng = lng + lng_offset;
+            const min_lng = lng - lng_offset;
+            if ((i_lat >= min_lat && i_lat <= max_lat) && (i_lng >= min_lng && i_lng <= max_lng)) {
+                console.log("too close")
+                return;
+            }
+        }
+    }
+
+    switch (type) {
+        case 0:
+            updatePeople(i_lat,i_lng)
+            break;
+        case 1:
+            updateAir(i_lat,i_lng,0)
+            break;
+        case 2:
+            updateAir(i_lat,i_lng,1)
+            break;
+        case 3:
+            updateAir(i_lat,i_lng,2)
+            break;
+        case 4:
+            updateGas(i_lat,i_lng,0)
+            break;
+        case 5:
+            updateGas(i_lat,i_lng,1)
+            break;
+        case 6:
+            updateGas(i_lat,i_lng,2)
+            break;
+        default:
+            return;
+    }
+
+    return;
+
+    
+
+
 }
