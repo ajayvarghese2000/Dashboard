@@ -204,7 +204,6 @@ input:-webkit-autofill:active{
     height: 80%;
     margin-left: 10px;
     margin-right: 10px;
-    font-size: 1vw;
     position: relative;
     font-size: 1vw;
     white-space:nowrap;
@@ -225,7 +224,7 @@ input:-webkit-autofill:active{
 
 .sidebar {
     height: 100%;
-    width: 50px;
+    width: 2.5vw;
     margin-left: 10px;
     margin-right: 10px;
     font-size: 1vw;
@@ -243,20 +242,15 @@ input:-webkit-autofill:active{
 
 .sidebar img {
     margin-top: 10px;
-    width: 45px;
-    height: 45px;
+    width: 2.3vw;
+    aspect-ratio: 1/1;
     position: relative;
 }
 
 .sidebar img:hover {
-    margin-top: 10px;
-    width: 45px;
-    height: 45px;
-    position: relative;
     filter: invert(50%);
 }
 
-/* CSS for the drone names when hovered */
 .tooltip {
     position: relative;
     display: inline-block;
@@ -264,7 +258,7 @@ input:-webkit-autofill:active{
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 70px;
+    width: 4vw;
     background-color: #3F3F3F;
     color: #fff;
     text-align: center;
@@ -275,6 +269,7 @@ input:-webkit-autofill:active{
     top: 12.5px;
     left: 125%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1vw;
 }
 
 .tooltip:hover .tooltiptext {
@@ -299,13 +294,13 @@ input:-webkit-autofill:active{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .cam {
     position: relative;
     margin-right: 10px;
-    height: 90%;
+    height: 97%;
     background-color: #3F3F3F;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -315,8 +310,7 @@ input:-webkit-autofill:active{
 .scam {
     position: relative;
     margin-right: 10px;
-    /* width: 25%; */
-    height: 90%;
+    height: 97%;
     background-color: #3F3F3F;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -330,7 +324,7 @@ input:-webkit-autofill:active{
 .halfcam {
     position: relative;
     margin-right: 10px;
-    height: 90%;
+    height: 97%;
     background-color: #3F3F3F;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -343,9 +337,9 @@ input:-webkit-autofill:active{
 
 .gas {
     position: relative;
-    width: 45%;
+    width: 100%;
     margin-right: 10px;
-    height: 90%;
+    height: 97%;
     background-color: #3F3F3F;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -360,13 +354,13 @@ input:-webkit-autofill:active{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .poulltion {
     position: relative;
     margin-right: 10px;
-    height: 90%;
+    height: 97%;
     width: 100%;
     background-color: #3F3F3F;
     border-radius: 30px;
@@ -429,12 +423,12 @@ input:-webkit-autofill:active{
     justify-content: center;
     padding-bottom: 25%;
     box-sizing: border-box;
-    font-size: 1.5vw;
+    font-size: 3vh;
 }
 
 .box_name{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.25vw;
+    font-size: 4vh;
     margin: 0;
     color: #FFF;
 }
@@ -448,11 +442,12 @@ input:-webkit-autofill:active{
     margin-bottom: 7%;
     position: relative;
     width: 90%;
+    overflow: hidden;
 }
 
 .line img{
     padding-right: 10%;
-    width: 2.5vw;
+    width: 5vh;
 }
 
 #gaschart{
@@ -545,25 +540,25 @@ input:-webkit-autofill:active{
 
 .kc_fab_main_btn {
     background-color: #F44336;
-    width: 40px;
-    height: 40px;
+    aspect-ratio: 1/1;
+    width: 2%;
     border-radius: 100%;
     background: #F44336;
     border: none;
     outline: none;
     color: #FFF;
-    font-size: 15px;
+    font-size: 2vh;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     transition: .3s;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     position: absolute;
     left: 97vw;
-    top: 8vh;
+    top: 10vh;
     visibility: hidden;
 }
   
  .kc_fab_main_btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     background: #86251e;
 }
 
@@ -571,8 +566,8 @@ input:-webkit-autofill:active{
     position: absolute;
     display: flex;
     z-index: 5;
-    width: 100px;
-    height: 60px;
+    width: 5vw;
+    height: 5vh;
     left: 0%;
     bottom: 0%;
     border-radius: 30px;
@@ -588,15 +583,15 @@ input:-webkit-autofill:active{
 }
 
 .map_key:hover{
-    width: 300px;
-    height: 300px;
+    width: 20vw;
+    height: 35vh;
 }
 
 #key_logo{
     position: relative;
     display: flex;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 25px;
+    font-size: 1.2vw;
     margin: 0;
     color: rgb(255, 255, 255);
     margin-top: 10px;
@@ -605,6 +600,7 @@ input:-webkit-autofill:active{
     align-content: center;
     justify-content: space-between;
     align-items: center;
+    overflow: visible;
 }
 
 #key_logo p{
@@ -616,7 +612,7 @@ input:-webkit-autofill:active{
     position: relative;
     display: flex;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 15px;
+    font-size: 1.2vw;
     margin: 0;
     color: rgb(255, 255, 255);
     margin-top: 10px;
@@ -639,6 +635,8 @@ input:-webkit-autofill:active{
     margin: 0;
     margin-left: 2px;
     margin-right: 2px;
+    aspect-ratio: 1/1;
+    width: 1vw;
 }
 
 #rads_key{
@@ -662,7 +660,7 @@ input:-webkit-autofill:active{
 
 #rads_gard{
     position: relative;
-    width: 250px;
-    height: 10px;
+    width: 90%;
+    height: 1.5vh;
     background: linear-gradient(to right, green, yellow,red);
 }
