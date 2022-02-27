@@ -1,4 +1,4 @@
-var TESTING = false;
+var TESTING = true;
 var URI = window.location.protocol + "//" + window.location.host
 var firstcheck = false
 var servererror = false
@@ -317,12 +317,6 @@ async function loaddrone(drone) {
 
 }
 
-// Functions to automatically resize elements
-function camsize() {
-    $("#tcamdiv").css("width", $(".cam").width());
-    $(".poulltion").css("width", $(".contentbottem").width() - $(".cam").width() - 10)
-}
-
 // Hashing function to take the login details
 function hash(s) {
     return s.split("").reduce(function (a, b) {
@@ -534,7 +528,9 @@ function newplotgas() {
     }
     var traces = [co,no2,nh3]
 
-    Plotly.plot('gaschart', traces, layout)
+    var config = {responsive: true}
+
+    Plotly.plot('gaschart', traces, layout, config)
 
     var bco = {
         x: [time],
@@ -553,7 +549,7 @@ function newplotgas() {
     }
     var traces = [bco,bno2,bnh3]
 
-    Plotly.plot('biggaschart', traces, layout)
+    Plotly.plot('biggaschart', traces, layout, config)
 }
 
 /**
@@ -641,7 +637,9 @@ function newplotair() {
     }
     var traces = [PM1,PM25,PM10]
 
-    Plotly.plot('airchart', traces, layout);
+    var config = {responsive: true}
+
+    Plotly.plot('airchart', traces, layout, config);
 
     var bPM1 = {
         x: [time],
@@ -661,7 +659,7 @@ function newplotair() {
 
     var traces = [bPM1,bPM25,bPM10]
 
-    Plotly.plot('bigairchart', traces, layout);
+    Plotly.plot('bigairchart', traces, layout, config);
 }
 
 /**
@@ -737,7 +735,9 @@ function newplotrad() {
     }
     var traces = [RAD]
 
-    Plotly.plot('radchart', traces, layout);
+    var config = {responsive: true}
+
+    Plotly.plot('radchart', traces, layout, config);
 }
 
 
@@ -776,11 +776,9 @@ function sensor_thresholds(gps, air, gas, person){
     return;
 }
 
-window.addEventListener('resize', camsize);
-
 $(document).ready(function () {
-    $("#tcamdiv").css("width", $(".cam").width());
-    $(".poulltion").css("width", $(".contentbottem").width() - $(".cam").width() - 10)
+    // $("#tcamdiv").css("width", $(".cam").width());
+    // $(".poulltion").css("width", $(".contentbottem").width() - $(".cam").width() - 10)
 
     datetime()
     setInterval(datetime, 500);

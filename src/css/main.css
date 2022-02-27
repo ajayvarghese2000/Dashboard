@@ -47,12 +47,13 @@ body {
 
 .forms {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     width: 50%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
+    font-size: 1.4vw;
     color: #fff;
     margin-left: 40px;
     margin-right: 40px;
@@ -129,7 +130,7 @@ body {
 
 .text {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 25px;
+    font-size: 1.2vw;
     margin: 0;
     display: inline;
     color: rgb(255, 255, 255);
@@ -172,7 +173,7 @@ body {
 .menu {
     position: absolute;
     width: 50%;
-    height: 37.5px;
+    height: 2vw;
     top: 100%;
     margin-top: 10px;
     transform: translate(50%, 50%);
@@ -182,17 +183,26 @@ body {
     justify-content: space-evenly;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     visibility: hidden;
+    align-items: flex-start;
+    white-space:nowrap;
+    overflow: hidden;
+    overflow-x:auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.menu::-webkit-scrollbar{
+    display: none;
 }
 
 .menu p {
     height: 80%;
     margin-left: 10px;
     margin-right: 10px;
-    font-size: 20px;
-    position: relative;
-    top: 0%;
-    transform: translateY(12%);
     font-size: 1vw;
+    position: relative;
+    font-size: 1vw;
+    white-space:nowrap;
 }
 
 .menu p:hover {
@@ -280,6 +290,7 @@ body {
 
 .contenttop {
     height: 50%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -289,17 +300,17 @@ body {
 .cam {
     position: relative;
     margin-right: 10px;
-    width: 45%;
     height: 90%;
     background-color: #3F3F3F;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    aspect-ratio: 16/9;
 }
 
 .scam {
     position: relative;
     margin-right: 10px;
-    width: 25%;
+    /* width: 25%; */
     height: 90%;
     background-color: #3F3F3F;
     border-radius: 30px;
@@ -308,11 +319,11 @@ body {
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
+    aspect-ratio: 1/1;
 }
 
 .halfcam {
     position: relative;
-    width: 20%;
     margin-right: 10px;
     height: 90%;
     background-color: #3F3F3F;
@@ -322,6 +333,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    aspect-ratio: 0.75/1;
 }
 
 .gas {
@@ -339,6 +351,7 @@ body {
 
 .contentbottem {
     height: 50%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -349,6 +362,7 @@ body {
     position: relative;
     margin-right: 10px;
     height: 90%;
+    width: 100%;
     background-color: #3F3F3F;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -410,11 +424,12 @@ body {
     justify-content: center;
     padding-bottom: 25%;
     box-sizing: border-box;
+    font-size: 1.5vw;
 }
 
 .box_name{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
+    font-size: 1.25vw;
     margin: 0;
     color: #FFF;
 }
@@ -432,7 +447,7 @@ body {
 
 .line img{
     padding-right: 10%;
-    width: 20%;
+    width: 2.5vw;
 }
 
 #gaschart{
@@ -442,8 +457,8 @@ body {
     overflow:hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 #airchart{
@@ -453,8 +468,8 @@ body {
     overflow:hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .heddingcontainer {
@@ -465,12 +480,12 @@ body {
 
 .BIGAI{
     position: absolute;
-    width: 70%;
     height: 100%;
     background-color: #3F3F3F;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
     align-self: center;
+    aspect-ratio: 16/9;
 }
 
 .BIGAI canvas{
@@ -482,12 +497,12 @@ body {
 
 .BIGTHERM{
     position: absolute;
-    width: 70%;
     height: 100%;
     background-color: #3F3F3F;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
     align-self: center;
+    aspect-ratio: 16/9;
 }
 
 .BIGTHERM canvas{
