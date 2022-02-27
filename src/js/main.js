@@ -776,17 +776,38 @@ function sensor_thresholds(gps, air, gas, person){
     return;
 }
 
-$(document).ready(function () {
-    // $("#tcamdiv").css("width", $(".cam").width());
-    // $(".poulltion").css("width", $(".contentbottem").width() - $(".cam").width() - 10)
+// Adds listeners to the login entry fields to run login with enter
+function enter_listener() {
+    var uname = document.getElementById("uname");
+    var pass = document.getElementById("psw");
 
+    uname.addEventListener("keyup", function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            login()
+        }
+    });
+
+    pass.addEventListener("keyup", function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            login()
+        }
+    });
+}
+
+// Functions to run when the page finishes loading
+$(document).ready(function () {
+    // Adds the ability to login by pressing enter
+    enter_listener()
+
+    // Sets the date and time, and updates it periodically
     datetime()
     setInterval(datetime, 500);
 
+    // Creates empty graphs to add data too
     newplotgas()
-
     newplotair()
-
     newplotrad()
 
 });
