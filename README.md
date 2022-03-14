@@ -96,7 +96,7 @@ If no drones are connected it alerts the user and keeps waiting until a drone is
 
 When drones do connect up to the server you will be able to view them on the sidebar to the left. When hovered the drone will display its drone ID.
 
-<p align="left"><img src="https://i.imgur.com/AE6x55V.png" alt="drawing" /> </p>
+<p align="center"><img src="https://i.imgur.com/AE6x55V.png" alt="drawing" /> </p>
 
 To view the data from a drone simply click on the drone in question. The dashboard will then attempt to make a connection via a websocket to access the drones information.
 
@@ -111,30 +111,32 @@ To the right of that the user has access to all the sensor data from the drone.
 The Main dashboard gives an overview of the data, if the user needs to look into a specific sensor in more detail they can using the menu bar at the top.
 
 <h3 align="center">AI Camera</h1>
-<p align="left"><img src="https://i.imgur.com/zXKiU9T.png" alt="drawing" /> </p>
+<p align="center"><img src="https://i.imgur.com/zXKiU9T.png" alt="drawing" /> </p>
 
 By clicking the AI Camera tab you will be able to see a larger version of the feed from the main overview page.
 
 <h3 align="center">Thermal Camera</h1>
-<p align="left"><img src="https://i.imgur.com/TXwOMaA.png" alt="drawing" /> </p>
+<p align="center"><img src="https://i.imgur.com/TXwOMaA.png" alt="drawing" /> </p>
 
 Similar to the AI Camera tab by clicking the Thermal Camera tab you will be able to see a larger version of the thermal camera feed from the drone.
 
 <h3 align="center">Radiation History</h1>
-<p align="left"><img src="https://i.imgur.com/MIAuclc.png" alt="drawing" /> </p>
+<p align="center"><img src="https://i.imgur.com/MIAuclc.png" alt="drawing" /> </p>
 
 The Radiation history tab shows the historical counts registered by the geiger counter on the drone. This is an interactive [plotly.js](https://plotly.com/javascript/) graph that allows you to zoom into data point, export images of the current graph and a whole suite of other features.
 
 <h3 align="center">Pollution History</h1>
-<p align="left"><img src="https://i.imgur.com/ideN953.png" alt="drawing" /> </p>
+<p align="center"><img src="https://i.imgur.com/ideN953.png" alt="drawing" /> </p>
 
 The Pollution History tab allows you a closer look at the pollution data from the main overview tab. This is an interactive [plotly.js](https://plotly.com/javascript/) graph that allows you to zoom into data point, export images of the current graph and a whole suite of other features.
 
 <h3 align="center">Gas History</h1>
-<p align="left"><img src="https://i.imgur.com/nxyBeN9.png" alt="drawing" /> </p>
+<p align="center"><img src="https://i.imgur.com/nxyBeN9.png" alt="drawing" /> </p>
 
 The Gas History tab allows you a closer look at the gas data from the main overview tab. This is an interactive [plotly.js](https://plotly.com/javascript/) graph that allows you to zoom into data point, export images of the current graph and a whole suite of other features.
 
 <h3 align="center">Maps</h1>
 
-<p align="center"> *Placeholder* </p>
+<p align="center"><img src="https://i.imgur.com/l13Zixj.png" alt="drawing" /> </p>
+
+The maps tab allows you to view the current position of the drone as well as see key data points on the graph. The drone will plot a heat map of the radiation levels as it travels along. If at any point either the gas levels or particulate levels get too high it will mark that location on the map. Where the drone detects people it will plot that on the graph as well.
