@@ -36,6 +36,7 @@ This will run in a browser and will make API and SocketIO calls to the server fo
 	- [Pollution History](#Pollution-History)
 	- [Gas History](#Gas-History)
 	- [Maps](#Maps)
+- [Test Plan](#Test-Plan)
 
 ------------
 
@@ -140,3 +141,21 @@ The Gas History tab allows you a closer look at the gas data from the main overv
 <p align="center"><img src="https://i.imgur.com/l13Zixj.png" alt="drawing" /> </p>
 
 The maps tab allows you to view the current position of the drone as well as see key data points on the graph. The drone will plot a heat map of the radiation levels as it travels along. If at any point either the gas levels or particulate levels get too high it will mark that location on the map. Where the drone detects people it will plot that on the graph as well.
+
+## Test Plan
+
+<div align="center">
+
+|Objective|Testing Strategy|Expected Output|Current Output|Pass/Fail|
+|--|--|--|--|:--:|
+|Display the drones that are connected connected to the server on the sidebar with their drone ID|Use the simulated drone to connect to the server and observer the result.|A new drone should show up on the side bar|A drone does show up on the side bar when a new drone connects|:heavy_check_mark:|
+|Listen for data on the websocket of the selected drone|Use the simulated drone to connect a number of drones to the server and send data then select a drone and, see if the GUI displays the data in the console.|The data from the correct connected drone should appear in the console.|The data did appear in the console from the correct drone this will be displayed to the user using the GUI|:heavy_check_mark:|
+|Display the data from the drone on the `Main` page of the GUI if the required format|Send data using the simulated drone tool and observe the page.|The data from the drone should appear in the main page. The feeds from the camera should be in its respective box's, the geiger dial should change depending on the reading. The other sensor values should be displayed correctly and graphs of the gas detected and the particulates detected should be plot.|Everything works as intended, the camera feeds are displayed in the correct box, the geiger dial changes with the data, the sensor values are displayed properly and the graphs are plotted as intended.|:heavy_check_mark:|
+|Display the AI camera feed from the selected drone on the `AI Cam` page of the GUI|Send data using the simulated drone tool and observe the page.|A larger version of the AI cam should be shown.|Displays the AI Cam in a larger format.|:heavy_check_mark:|
+|Display the Thermal camera feed from the selected drone of the `Thermal Cam` page of the GUI|Send data using the simulated drone tool and observe the page.|A larger version of the thermal camera should be shown|Displays the Thermal Cam in a larger format|:heavy_check_mark:|
+|Display the Radiation history in CPM from the selected drone of the `Radiation History` page of the GUI|Send data using the simulated drone tool and observe the page.|Graph should be shown for the radiation in CPM|Shows Plotly.js graph that records historical radiation values|:heavy_check_mark:|
+|Display the Pollution history from the selected drone of the `Pollution History` page of the GUI|Send data using the simulated drone tool and observe the page.|A larger version of the pollution graph should be shown|A larger version of the pollution graph is shown|:heavy_check_mark:|
+|Display the Gas history from the selected drone of the `Gas History` page of the GUI|Send data using the simulated drone tool and observe the page.|A larger version of the Gas graph should be shown|A larger version of the gas graph is shown|:heavy_check_mark:|
+|Display the drone's position on the map and tag critical reading on the map using the GPS data from the readings.|Send data using the simulated drone tool and observe the page.|A map should be shown the the drones current location, and dangerous locations should be highlighted.|*Feature not implemented yet*|❌|
+
+</div>
