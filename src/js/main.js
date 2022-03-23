@@ -745,8 +745,8 @@ function sensor_thresholds(gps, air, gas, person){
     lat = gps["lat"]
     lng = gps["long"]
 
-    air_thresholds = 0.95;
-    gas_thresholds = 0.95;
+    air_thresholds = 2000;
+    gas_thresholds = 2000;
 
     air = [air["pm1"], air["pm2_5"], air["pm10"]]
     gas = [gas["co"], gas["no2"], gas["nh3"]]
