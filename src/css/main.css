@@ -664,3 +664,28 @@ input:-webkit-autofill:active{
     height: 1.5vh;
     background: linear-gradient(to right, green, yellow,red);
 }
+
+.thermal_gradiant{
+    position: absolute;
+    width: 17%;
+    height: 1.5vh;
+    background: linear-gradient(to right,#0000ff, #FFEB3B, #FFC107, #F44336);
+    z-index: 500;
+    top: 95%;
+    left: 8%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.thermal_gradiant p{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.8vw;
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+}
